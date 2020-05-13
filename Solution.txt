@@ -1,0 +1,16 @@
+This text contains the solution for the table problem of finding to which axis does an element belong to:
+
+
+Row 1)          1    2    3
+Row 2)          4    5    6
+Row 3)          7    8    9
+Row 4)         10  11  12
+Row 5)         13  14  15
+Row 6)         16  17  18
+Row 7)         19  20  21
+Row 8)         22  23  24
+Row 9)         25  26  27
+Row 10)       28  29  30
+
+Supposing that we want to figure out if the values below belong to table 1 , 2 or 3 we see a pattern of all the number of a row being, asuming that 1, 2 or 3 are x and y is the current position
+of the vertex, then:  y = x-(3*(row-1)).
