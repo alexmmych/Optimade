@@ -3,6 +3,8 @@
 #endif
 
 #include <windows.h>
+#include <commctrl.h>
+#include <uxtheme.h>
 
 #include <fstream>
 #include <iostream>

@@ -86,6 +86,8 @@ void Window::CreateAWindow()
 		NULL //Window "LpParam" parameter, don't know how to use it so null (To do: figure out what it does and where to use it).
 	);
 
+	SetWindowTheme(WindowHandle, L"Explorer", NULL);
+
 }
 
 void Window::ShowAWindow()
