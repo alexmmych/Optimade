@@ -20,5 +20,5 @@ FOR /f "delims=" %%v IN ('dir /a-d /b "%sourcedir%*.cpp"') DO (
 SET CppList=!CppList!%space%%%v
 )
 
-g++%CppList% -v -o C:\Optimade\Optimade.exe
+g++%CppList% -o C:\Optimade\Optimade.exe
 PAUSE
