@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9D80F916-0F37-3B75-B6A0-48840311D492}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ceftests</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\CEF\tests\ceftests\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ceftests.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ceftests</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\CEF\tests\ceftests\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ceftests.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ceftests</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4127;4244;4481;4512;4701;4702;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;UNIT_TEST;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;UNIT_TEST;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>Adding manifest...															</Message>
+      <Command>setlocal
+mt.exe -nologo -manifest "C:/Optimade/CEF/tests/ceftests/resources/win/ceftests.exe.manifest" "C:/Optimade/CEF/tests/ceftests/resources/win/compatibility.manifest" -outputresource:"C:/Optimade/CEF/tests/ceftests/Debug/ceftests.exe";#1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/chrome_elf.dll C:/Optimade/CEF/tests/ceftests/Debug/chrome_elf.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/d3dcompiler_47.dll C:/Optimade/CEF/tests/ceftests/Debug/d3dcompiler_47.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libcef.dll C:/Optimade/CEF/tests/ceftests/Debug/libcef.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libEGL.dll C:/Optimade/CEF/tests/ceftests/Debug/libEGL.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libGLESv2.dll C:/Optimade/CEF/tests/ceftests/Debug/libGLESv2.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/snapshot_blob.bin C:/Optimade/CEF/tests/ceftests/Debug/snapshot_blob.bin
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/v8_context_snapshot.bin C:/Optimade/CEF/tests/ceftests/Debug/v8_context_snapshot.bin
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/swiftshader C:/Optimade/CEF/tests/ceftests/Debug/swiftshader
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef.pak C:/Optimade/CEF/tests/ceftests/Debug/cef.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_100_percent.pak C:/Optimade/CEF/tests/ceftests/Debug/cef_100_percent.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_200_percent.pak C:/Optimade/CEF/tests/ceftests/Debug/cef_200_percent.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_extensions.pak C:/Optimade/CEF/tests/ceftests/Debug/cef_extensions.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/devtools_resources.pak C:/Optimade/CEF/tests/ceftests/Debug/devtools_resources.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/icudtl.dat C:/Optimade/CEF/tests/ceftests/Debug/icudtl.dat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/CEF/Resources/locales C:/Optimade/CEF/tests/ceftests/Debug/locales
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\Debug\libcef.lib;..\..\libcef_dll_wrapper\Debug\libcef_dll_wrapper.lib;..\gtest\Debug\cef_gtest.lib;comctl32.lib;rpcrt4.lib;shlwapi.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Optimade/CEF/tests/ceftests/Debug/ceftests.lib</ImportLibrary>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ProgramDataBaseFile>C:/Optimade/CEF/tests/ceftests/Debug/ceftests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4127;4244;4481;4512;4701;4702;4996</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;_NDEBUG;UNIT_TEST;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;_NDEBUG;UNIT_TEST;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>Adding manifest...															</Message>
+      <Command>setlocal
+mt.exe -nologo -manifest "C:/Optimade/CEF/tests/ceftests/resources/win/ceftests.exe.manifest" "C:/Optimade/CEF/tests/ceftests/resources/win/compatibility.manifest" -outputresource:"C:/Optimade/CEF/tests/ceftests/Release/ceftests.exe";#1
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/chrome_elf.dll C:/Optimade/CEF/tests/ceftests/Release/chrome_elf.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/d3dcompiler_47.dll C:/Optimade/CEF/tests/ceftests/Release/d3dcompiler_47.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libcef.dll C:/Optimade/CEF/tests/ceftests/Release/libcef.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libEGL.dll C:/Optimade/CEF/tests/ceftests/Release/libEGL.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libGLESv2.dll C:/Optimade/CEF/tests/ceftests/Release/libGLESv2.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/snapshot_blob.bin C:/Optimade/CEF/tests/ceftests/Release/snapshot_blob.bin
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/v8_context_snapshot.bin C:/Optimade/CEF/tests/ceftests/Release/v8_context_snapshot.bin
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/swiftshader C:/Optimade/CEF/tests/ceftests/Release/swiftshader
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef.pak C:/Optimade/CEF/tests/ceftests/Release/cef.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_100_percent.pak C:/Optimade/CEF/tests/ceftests/Release/cef_100_percent.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_200_percent.pak C:/Optimade/CEF/tests/ceftests/Release/cef_200_percent.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_extensions.pak C:/Optimade/CEF/tests/ceftests/Release/cef_extensions.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/devtools_resources.pak C:/Optimade/CEF/tests/ceftests/Release/devtools_resources.pak
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/icudtl.dat C:/Optimade/CEF/tests/ceftests/Release/icudtl.dat
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/CEF/Resources/locales C:/Optimade/CEF/tests/ceftests/Release/locales
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\Release\libcef.lib;..\..\libcef_dll_wrapper\Release\libcef_dll_wrapper.lib;..\gtest\Release\cef_gtest.lib;comctl32.lib;rpcrt4.lib;shlwapi.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Optimade/CEF/tests/ceftests/Release/ceftests.lib</ImportLibrary>
+      <LargeAddressAware>true</LargeAddressAware>
+      <ProgramDataBaseFile>C:/Optimade/CEF/tests/ceftests/Release/ceftests.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Optimade\CEF\tests\ceftests\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Optimade/CEF/tests/ceftests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/CEF -BC:/Optimade/CEF --check-stamp-file C:/Optimade/CEF/tests/ceftests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\CEF\tests\ceftests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Optimade/CEF/tests/ceftests/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/CEF -BC:/Optimade/CEF --check-stamp-file C:/Optimade/CEF/tests/ceftests/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\CEF\tests\ceftests\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\browser_info_map_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\client_app_delegates.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\command_line_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\cookie_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\dialog_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\display_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\dom_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\download_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\draggable_regions_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\file_util_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\frame_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\image_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\image_util.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\image_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\jsdialog_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\life_span_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\message_router_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\navigation_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\os_rendering_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\osr_accessibility_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\osr_display_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\parser_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\plugin_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\preference_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\print_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\process_message_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\request_context_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\request_handler_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\request_unittest.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\resource.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\resource_manager_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\resource_request_handler_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\response_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\routing_test_handler.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\routing_test_handler.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\run_all_unittests.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\scheme_handler_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\scoped_temp_dir_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\server_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\stream_resource_handler_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\stream_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\string_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\task_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\test_handler.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\test_handler.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\test_suite.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\test_suite.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\test_util.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\test_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\thread_helper.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\thread_helper.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\thread_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\tracing_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\translator_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\urlrequest_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\v8_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\values_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\version_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\waitable_event_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\webui_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\xml_reader_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\zip_reader_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\resource_util_win_idmap.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\background_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\chrome_alarms_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\chrome_storage_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\chrome_tabs_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\extension_test_handler.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\extensions\extension_test_handler.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\extensions\view_unittest.cc" />
+    <ResourceCompile Include="C:\Optimade\CEF\tests\ceftests\resources\win\ceftests.rc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\client_app_browser.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\client_app_browser.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\extension_util.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\extension_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\file_util.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\file_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\geometry_util.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\geometry_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop_external_pump.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop_external_pump.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop_std.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop_std.h" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\resource_util.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\main_message_loop_external_pump_win.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\resource_util_win.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\browser\util_win.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\browser\util_win.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\common\client_app.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\common\client_app.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\common\client_app_other.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\common\client_app_other.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\common\client_switches.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\common\client_switches.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\shared\renderer\client_app_renderer.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\shared\renderer\client_app_renderer.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\button_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\panel_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\scroll_view_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\test_window_delegate.cc" />
+    <ClInclude Include="C:\Optimade\CEF\tests\ceftests\views\test_window_delegate.h" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\textfield_unittest.cc" />
+    <ClCompile Include="C:\Optimade\CEF\tests\ceftests\views\window_unittest.cc" />
+    <None Include="C:\Optimade\CEF\tests\shared\resources\osr_test.html" />
+    <None Include="C:\Optimade\CEF\tests\shared\resources\pdf.html" />
+    <None Include="C:\Optimade\CEF\tests\shared\resources\pdf.pdf" />
+    <Image Include="C:\Optimade\CEF\tests\shared\resources\window_icon.1x.png" />
+    <Image Include="C:\Optimade\CEF\tests\shared\resources\window_icon.2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Optimade\CEF\ZERO_CHECK.vcxproj">
+      <Project>{4BBF6561-B2EB-315A-9D6C-D0B249BF08DA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Optimade\CEF\tests\gtest\cef_gtest.vcxproj">
+      <Project>{06E5AB7D-0E75-3942-B939-A7D9D9149B57}</Project>
+      <Name>cef_gtest</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Optimade\CEF\libcef_dll_wrapper\libcef_dll_wrapper.vcxproj">
+      <Project>{02D41D0E-32C1-3CF3-A5D1-FC623CF1B255}</Project>
+      <Name>libcef_dll_wrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

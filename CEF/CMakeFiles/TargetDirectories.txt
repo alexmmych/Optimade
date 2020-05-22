@@ -1,0 +1,7 @@
+C:/Optimade/CEF/CMakeFiles/ALL_BUILD.dir
+C:/Optimade/CEF/CMakeFiles/ZERO_CHECK.dir
+C:/Optimade/CEF/libcef_dll_wrapper/CMakeFiles/libcef_dll_wrapper.dir
+C:/Optimade/CEF/tests/cefsimple/CMakeFiles/cefsimple.dir
+C:/Optimade/CEF/tests/gtest/CMakeFiles/cef_gtest.dir
+C:/Optimade/CEF/tests/ceftests/CMakeFiles/ceftests.dir
+C:/Optimade/CEF/tests/cefclient/CMakeFiles/cefclient.dir
