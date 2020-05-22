@@ -117,7 +117,7 @@ set(CMAKE_CONFIGURATION_TYPES Debug Release)
 
 # Project name.
 # TODO: Change this line to match your project name when you copy this file.
-project(CEF)
+project(cef)
 
 # Use folders in the resulting project files.
 set_property(GLOBAL PROPERTY OS_FOLDERS ON)
@@ -200,9 +200,9 @@ add_subdirectory(${CEF_LIBCEF_DLL_WRAPPER_PATH} libcef_dll_wrapper)
 # Comes from the <target>/CMakeLists.txt file in the current directory.
 # TODO: Change these lines to match your project target when you copy this file.
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests")
-  add_subdirectory(C:/Optimade/CEF/tests/cefsimple)
-  add_subdirectory(C:/Optimade/CEF/tests/gtest)
-  add_subdirectory(C:/Optimade/CEF/tests/ceftests)
+  add_subdirectory(tests/cefsimple)
+  add_subdirectory(tests/gtest)
+  add_subdirectory(tests/ceftests)
 endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/cefclient")

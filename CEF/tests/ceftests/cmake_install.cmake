@@ -1,8 +1,8 @@
-# Install script for directory: C:/Optimade/CEF/tests/ceftests
+# Install script for directory: C:/Optimade/cef/tests/ceftests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/CEF")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/cef")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

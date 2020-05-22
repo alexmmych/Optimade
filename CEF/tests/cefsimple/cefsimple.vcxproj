@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{16C4634E-1FD4-3A62-AC70-597DD157012E}</ProjectGuid>
+    <ProjectGuid>{12C666A7-F79A-3437-B1F8-5C524895E1F0}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\CEF\tests\cefsimple\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\cef\tests\cefsimple\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cefsimple.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cefsimple</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\CEF\tests\cefsimple\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\cef\tests\cefsimple\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cefsimple.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cefsimple</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -78,10 +78,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -91,7 +91,7 @@
     <PostBuildEvent>
       <Message>Adding manifest...															</Message>
       <Command>setlocal
-mt.exe -nologo -manifest "C:/Optimade/CEF/tests/cefsimple/cefsimple.exe.manifest" "C:/Optimade/CEF/tests/cefsimple/compatibility.manifest" -outputresource:"C:/Optimade/CEF/tests/cefsimple/Debug/cefsimple.exe";#1
+mt.exe -nologo -manifest "C:/Optimade/cef/tests/cefsimple/cefsimple.exe.manifest" "C:/Optimade/cef/tests/cefsimple/compatibility.manifest" -outputresource:"C:/Optimade/cef/tests/cefsimple/Debug/cefsimple.exe";#1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -100,7 +100,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/chrome_elf.dll C:/Optimade/CEF/tests/cefsimple/Debug/chrome_elf.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/chrome_elf.dll C:/Optimade/cef/tests/cefsimple/Debug/chrome_elf.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -109,7 +109,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/d3dcompiler_47.dll C:/Optimade/CEF/tests/cefsimple/Debug/d3dcompiler_47.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/d3dcompiler_47.dll C:/Optimade/cef/tests/cefsimple/Debug/d3dcompiler_47.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -118,7 +118,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libcef.dll C:/Optimade/CEF/tests/cefsimple/Debug/libcef.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/libcef.dll C:/Optimade/cef/tests/cefsimple/Debug/libcef.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -127,7 +127,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libEGL.dll C:/Optimade/CEF/tests/cefsimple/Debug/libEGL.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/libEGL.dll C:/Optimade/cef/tests/cefsimple/Debug/libEGL.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -136,7 +136,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/libGLESv2.dll C:/Optimade/CEF/tests/cefsimple/Debug/libGLESv2.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/libGLESv2.dll C:/Optimade/cef/tests/cefsimple/Debug/libGLESv2.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -145,7 +145,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/snapshot_blob.bin C:/Optimade/CEF/tests/cefsimple/Debug/snapshot_blob.bin
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/snapshot_blob.bin C:/Optimade/cef/tests/cefsimple/Debug/snapshot_blob.bin
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -154,7 +154,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/v8_context_snapshot.bin C:/Optimade/CEF/tests/cefsimple/Debug/v8_context_snapshot.bin
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Debug/v8_context_snapshot.bin C:/Optimade/cef/tests/cefsimple/Debug/v8_context_snapshot.bin
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -163,7 +163,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Debug/swiftshader C:/Optimade/CEF/tests/cefsimple/Debug/swiftshader
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/cef/Debug/swiftshader C:/Optimade/cef/tests/cefsimple/Debug/swiftshader
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -172,7 +172,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef.pak C:/Optimade/CEF/tests/cefsimple/Debug/cef.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef.pak C:/Optimade/cef/tests/cefsimple/Debug/cef.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -181,7 +181,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_100_percent.pak C:/Optimade/CEF/tests/cefsimple/Debug/cef_100_percent.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_100_percent.pak C:/Optimade/cef/tests/cefsimple/Debug/cef_100_percent.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -190,7 +190,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_200_percent.pak C:/Optimade/CEF/tests/cefsimple/Debug/cef_200_percent.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_200_percent.pak C:/Optimade/cef/tests/cefsimple/Debug/cef_200_percent.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -199,7 +199,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_extensions.pak C:/Optimade/CEF/tests/cefsimple/Debug/cef_extensions.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_extensions.pak C:/Optimade/cef/tests/cefsimple/Debug/cef_extensions.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -208,7 +208,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/devtools_resources.pak C:/Optimade/CEF/tests/cefsimple/Debug/devtools_resources.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/devtools_resources.pak C:/Optimade/cef/tests/cefsimple/Debug/devtools_resources.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -217,7 +217,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/icudtl.dat C:/Optimade/CEF/tests/cefsimple/Debug/icudtl.dat
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/icudtl.dat C:/Optimade/cef/tests/cefsimple/Debug/icudtl.dat
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -226,7 +226,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/CEF/Resources/locales C:/Optimade/CEF/tests/cefsimple/Debug/locales
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/cef/Resources/locales C:/Optimade/cef/tests/cefsimple/Debug/locales
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -241,9 +241,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Optimade/CEF/tests/cefsimple/Debug/cefsimple.lib</ImportLibrary>
+      <ImportLibrary>C:/Optimade/cef/tests/cefsimple/Debug/cefsimple.lib</ImportLibrary>
       <LargeAddressAware>true</LargeAddressAware>
-      <ProgramDataBaseFile>C:/Optimade/CEF/tests/cefsimple/Debug/cefsimple.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Optimade/cef/tests/cefsimple/Debug/cefsimple.pdb</ProgramDataBaseFile>
       <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
@@ -252,7 +252,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -274,10 +274,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;_WIN32;UNICODE;_UNICODE;WINVER=0x0601;_WIN32_WINNT=0x601;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;CEF_USE_ATL;_NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Optimade\CEF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Optimade\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -287,7 +287,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message>Adding manifest...															</Message>
       <Command>setlocal
-mt.exe -nologo -manifest "C:/Optimade/CEF/tests/cefsimple/cefsimple.exe.manifest" "C:/Optimade/CEF/tests/cefsimple/compatibility.manifest" -outputresource:"C:/Optimade/CEF/tests/cefsimple/Release/cefsimple.exe";#1
+mt.exe -nologo -manifest "C:/Optimade/cef/tests/cefsimple/cefsimple.exe.manifest" "C:/Optimade/cef/tests/cefsimple/compatibility.manifest" -outputresource:"C:/Optimade/cef/tests/cefsimple/Release/cefsimple.exe";#1
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -296,7 +296,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/chrome_elf.dll C:/Optimade/CEF/tests/cefsimple/Release/chrome_elf.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/chrome_elf.dll C:/Optimade/cef/tests/cefsimple/Release/chrome_elf.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -305,7 +305,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/d3dcompiler_47.dll C:/Optimade/CEF/tests/cefsimple/Release/d3dcompiler_47.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/d3dcompiler_47.dll C:/Optimade/cef/tests/cefsimple/Release/d3dcompiler_47.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -314,7 +314,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libcef.dll C:/Optimade/CEF/tests/cefsimple/Release/libcef.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/libcef.dll C:/Optimade/cef/tests/cefsimple/Release/libcef.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -323,7 +323,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libEGL.dll C:/Optimade/CEF/tests/cefsimple/Release/libEGL.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/libEGL.dll C:/Optimade/cef/tests/cefsimple/Release/libEGL.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -332,7 +332,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/libGLESv2.dll C:/Optimade/CEF/tests/cefsimple/Release/libGLESv2.dll
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/libGLESv2.dll C:/Optimade/cef/tests/cefsimple/Release/libGLESv2.dll
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -341,7 +341,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/snapshot_blob.bin C:/Optimade/CEF/tests/cefsimple/Release/snapshot_blob.bin
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/snapshot_blob.bin C:/Optimade/cef/tests/cefsimple/Release/snapshot_blob.bin
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -350,7 +350,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/v8_context_snapshot.bin C:/Optimade/CEF/tests/cefsimple/Release/v8_context_snapshot.bin
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Release/v8_context_snapshot.bin C:/Optimade/cef/tests/cefsimple/Release/v8_context_snapshot.bin
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -359,7 +359,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Release/swiftshader C:/Optimade/CEF/tests/cefsimple/Release/swiftshader
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/cef/Release/swiftshader C:/Optimade/cef/tests/cefsimple/Release/swiftshader
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -368,7 +368,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef.pak C:/Optimade/CEF/tests/cefsimple/Release/cef.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef.pak C:/Optimade/cef/tests/cefsimple/Release/cef.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -377,7 +377,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_100_percent.pak C:/Optimade/CEF/tests/cefsimple/Release/cef_100_percent.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_100_percent.pak C:/Optimade/cef/tests/cefsimple/Release/cef_100_percent.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -386,7 +386,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_200_percent.pak C:/Optimade/CEF/tests/cefsimple/Release/cef_200_percent.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_200_percent.pak C:/Optimade/cef/tests/cefsimple/Release/cef_200_percent.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -395,7 +395,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/cef_extensions.pak C:/Optimade/CEF/tests/cefsimple/Release/cef_extensions.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/cef_extensions.pak C:/Optimade/cef/tests/cefsimple/Release/cef_extensions.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -404,7 +404,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/devtools_resources.pak C:/Optimade/CEF/tests/cefsimple/Release/devtools_resources.pak
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/devtools_resources.pak C:/Optimade/cef/tests/cefsimple/Release/devtools_resources.pak
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -413,7 +413,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/CEF/Resources/icudtl.dat C:/Optimade/CEF/tests/cefsimple/Release/icudtl.dat
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_if_different C:/Optimade/cef/Resources/icudtl.dat C:/Optimade/cef/tests/cefsimple/Release/icudtl.dat
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -422,7 +422,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/CEF/Resources/locales C:/Optimade/CEF/tests/cefsimple/Release/locales
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -E copy_directory C:/Optimade/cef/Resources/locales C:/Optimade/cef/tests/cefsimple/Release/locales
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -437,9 +437,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Optimade/CEF/tests/cefsimple/Release/cefsimple.lib</ImportLibrary>
+      <ImportLibrary>C:/Optimade/cef/tests/cefsimple/Release/cefsimple.lib</ImportLibrary>
       <LargeAddressAware>true</LargeAddressAware>
-      <ProgramDataBaseFile>C:/Optimade/CEF/tests/cefsimple/Release/cefsimple.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Optimade/cef/tests/cefsimple/Release/cefsimple.pdb</ProgramDataBaseFile>
       <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
@@ -447,10 +447,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Optimade\CEF\tests\cefsimple\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Optimade/CEF/tests/cefsimple/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Optimade\cef\tests\cefsimple\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Optimade/cef/tests/cefsimple/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/CEF -BC:/Optimade/CEF --check-stamp-file C:/Optimade/CEF/tests/cefsimple/CMakeFiles/generate.stamp
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/cef -BC:/Optimade/cef --check-stamp-file C:/Optimade/cef/tests/cefsimple/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -459,11 +459,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\CEF\tests\cefsimple\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Optimade\cef\tests\cefsimple\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Optimade/CEF/tests/cefsimple/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Optimade/cef/tests/cefsimple/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/CEF -BC:/Optimade/CEF --check-stamp-file C:/Optimade/CEF/tests/cefsimple/CMakeFiles/generate.stamp
+C:\cmake-3.17.2-win64-x64\bin\cmake.exe -SC:/Optimade/cef -BC:/Optimade/cef --check-stamp-file C:/Optimade/cef/tests/cefsimple/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -472,29 +472,29 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\CEF\tests\cefsimple\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Optimade\cef\tests\cefsimple\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Optimade\CEF\tests\cefsimple\simple_app.cc" />
-    <ClInclude Include="C:\Optimade\CEF\tests\cefsimple\simple_app.h" />
-    <ClCompile Include="C:\Optimade\CEF\tests\cefsimple\simple_handler.cc" />
-    <ClInclude Include="C:\Optimade\CEF\tests\cefsimple\simple_handler.h" />
-    <ResourceCompile Include="C:\Optimade\CEF\tests\cefsimple\cefsimple.rc" />
-    <ClCompile Include="C:\Optimade\CEF\tests\cefsimple\cefsimple_win.cc" />
-    <ClInclude Include="C:\Optimade\CEF\tests\cefsimple\resource.h" />
-    <ClCompile Include="C:\Optimade\CEF\tests\cefsimple\simple_handler_win.cc" />
+    <ClCompile Include="C:\Optimade\cef\tests\cefsimple\simple_app.cc" />
+    <ClInclude Include="C:\Optimade\cef\tests\cefsimple\simple_app.h" />
+    <ClCompile Include="C:\Optimade\cef\tests\cefsimple\simple_handler.cc" />
+    <ClInclude Include="C:\Optimade\cef\tests\cefsimple\simple_handler.h" />
+    <ResourceCompile Include="C:\Optimade\cef\tests\cefsimple\cefsimple.rc" />
+    <ClCompile Include="C:\Optimade\cef\tests\cefsimple\cefsimple_win.cc" />
+    <ClInclude Include="C:\Optimade\cef\tests\cefsimple\resource.h" />
+    <ClCompile Include="C:\Optimade\cef\tests\cefsimple\simple_handler_win.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Optimade\CEF\ZERO_CHECK.vcxproj">
-      <Project>{4BBF6561-B2EB-315A-9D6C-D0B249BF08DA}</Project>
+    <ProjectReference Include="C:\Optimade\cef\ZERO_CHECK.vcxproj">
+      <Project>{BE197C96-B8FD-3DE8-A20F-4809DD4D765A}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Optimade\CEF\libcef_dll_wrapper\libcef_dll_wrapper.vcxproj">
-      <Project>{02D41D0E-32C1-3CF3-A5D1-FC623CF1B255}</Project>
+    <ProjectReference Include="C:\Optimade\cef\libcef_dll_wrapper\libcef_dll_wrapper.vcxproj">
+      <Project>{04DA49DE-661A-3BE9-AEFA-0A6B431DCC50}</Project>
       <Name>libcef_dll_wrapper</Name>
     </ProjectReference>
   </ItemGroup>

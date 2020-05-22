@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Optimade\CEF\tests\gtest\src\gtest-all.cc">
+    <ClCompile Include="C:\Optimade\cef\tests\gtest\src\gtest-all.cc">
       <Filter>cef_gtest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Optimade\CEF\tests\gtest\CMakeLists.txt" />
+    <CustomBuild Include="C:\Optimade\cef\tests\gtest\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="cef_gtest">
-      <UniqueIdentifier>{048093A1-EFE4-3B7D-9342-ED8A35A08FE2}</UniqueIdentifier>
+      <UniqueIdentifier>{D98691BF-C6EA-36A9-A857-340A17D916F1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

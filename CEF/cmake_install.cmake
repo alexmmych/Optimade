@@ -1,8 +1,8 @@
-# Install script for directory: C:/Optimade/CEF
+# Install script for directory: C:/Optimade/cef
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/CEF")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/cef")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,11 +34,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Optimade/CEF/libcef_dll_wrapper/cmake_install.cmake")
-  include("C:/Optimade/CEF/tests/cefsimple/cmake_install.cmake")
-  include("C:/Optimade/CEF/tests/gtest/cmake_install.cmake")
-  include("C:/Optimade/CEF/tests/ceftests/cmake_install.cmake")
-  include("C:/Optimade/CEF/tests/cefclient/cmake_install.cmake")
+  include("C:/Optimade/cef/libcef_dll_wrapper/cmake_install.cmake")
+  include("C:/Optimade/cef/tests/cefsimple/cmake_install.cmake")
+  include("C:/Optimade/cef/tests/gtest/cmake_install.cmake")
+  include("C:/Optimade/cef/tests/ceftests/cmake_install.cmake")
+  include("C:/Optimade/cef/tests/cefclient/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Optimade/CEF/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Optimade/cef/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
