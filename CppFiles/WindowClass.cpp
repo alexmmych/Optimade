@@ -26,6 +26,10 @@ Window::Window()
 
 	std::cout << "Status: Window class created.\n";
 
+	CefClient client;
+
+	CefBrowserHost::CreateBrowser(CefWindowInfo(WindowHandle));
+
 	ShowAWindow();
 
 	MessageLoop();

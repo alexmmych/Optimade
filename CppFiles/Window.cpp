@@ -29,7 +29,20 @@ int WINAPI WinMain(
 {
     CreateConsole();
 
+    CefApp display;
+
+    CefMainArgs args(hInstance);
+
+    CefSettings settings;
+
+    settings.no_sandbox = true;
+    settings.multi_threaded_message_loop = true; //Windows only
+
+    CefInitialize(args, settings, NULL, NULL);
+
 	Window window;
+
+    CefShutdown();
 
 	return 0;
 }

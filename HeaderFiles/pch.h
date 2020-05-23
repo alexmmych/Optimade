@@ -3,12 +3,14 @@
 #endif
 
 #include <windows.h>
-#include <commctrl.h>
-#include <uxtheme.h>
 
-#include <fstream>
+#include "../cef/include/cef_base.h"
+#include "../cef/include/cef_app.h"
+#include "../cef/include/internal/cef_win.h"
+#include "../cef/include/internal/cef_types_wrappers.h"
+#include "../cef/include/cef_client.h"
+#include "../cef/include/cef_browser.h"
+
+
 #include <iostream>
-#include <algorithm>
-#include <regex>
-#include <vector>
 #include <string>
