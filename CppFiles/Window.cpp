@@ -21,6 +21,11 @@
 
 #define _DEBUG  //If defined, creates the D3D12 debug layer and console.
 
+class tempClass : public CefBase {
+private:
+	IMPLEMENT_REFCOUNTING(tempClass);
+};
+
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -29,18 +34,27 @@ int WINAPI WinMain(
 {
     CreateConsole();
 
-    CefApp display;
+		CefEnableHighDPISupport();
 
-    CefMainArgs args(hInstance);
+		CefMainArgs args(hInstance);
 
-    CefSettings settings;
+		void* sandbox_info = nullptr;
 
-    settings.no_sandbox = true;
-    settings.multi_threaded_message_loop = true; //Windows only
+		// Create a
+	  CefRefPtr<tempClass> app(new tempClass);
 
-    CefInitialize(args, settings, NULL, NULL);
+		int exit_code = CefExecuteProcess(args, app, sandbox_info);
+		if (exit_code >= 0)
+			return exit_code;
 
-	Window window;
+		CefSettings settings;
+
+		settings.no_sandbox = true;
+		settings.multi_threaded_message_loop = true; //Windows only
+
+    CefInitialize(args, settings, app.get(), sandbox_info);
+
+		Window window;
 
     CefShutdown();
 
