@@ -8,6 +8,16 @@
 #include "../HeaderFiles/WindowHeader.h"
 #include "../HeaderFiles/ConsoleHeader.h"
 
+class TempClass : public CefApp {
+public:
+	// Various class methods here...
+
+private:
+	// Various class members here...
+
+	IMPLEMENT_REFCOUNTING(TempClass);  // Provides atomic refcounting implementation.
+};
+
 
                /***********************************************************/
                /*                                                         */
@@ -19,12 +29,7 @@
                /*                                                         */
                /***********************************************************/
 
-#define _DEBUG  //If defined, creates the D3D12 debug layer and console.
 
-class tempClass : public CefBase {
-private:
-	IMPLEMENT_REFCOUNTING(tempClass);
-};
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -32,29 +37,30 @@ int WINAPI WinMain(
 	_In_ LPSTR lpCmdLine,
 	_In_ int nShowCmd)
 {
+	UNREFERENCED_PARAMETER(hPrevInstance);
+	UNREFERENCED_PARAMETER(lpCmdLine);
+
+	CefEnableHighDPISupport();
+
     CreateConsole();
 
-		CefEnableHighDPISupport();
+	CefMainArgs args(hInstance);
 
-		CefMainArgs args(hInstance);
+	void* sandbox_info = nullptr;
 
-		void* sandbox_info = nullptr;
+	CefSettings settings;
 
-		// Create a
-	  CefRefPtr<tempClass> app(new tempClass);
+	settings.no_sandbox = true;
 
-		int exit_code = CefExecuteProcess(args, app, sandbox_info);
-		if (exit_code >= 0)
-			return exit_code;
+	int exit_code = CefExecuteProcess(args, nullptr, sandbox_info);
+	if (exit_code >= 0)
+		return exit_code;
 
-		CefSettings settings;
-
-		settings.no_sandbox = true;
-		settings.multi_threaded_message_loop = true; //Windows only
+	CefRefPtr<TempClass> app(new TempClass);
 
     CefInitialize(args, settings, app.get(), sandbox_info);
 
-		Window window;
+	CefDoMessageLoopWork();
 
     CefShutdown();
 

@@ -37,5 +37,5 @@ ECHO !IncludeList1!
 
 )
 
-cl%CppList% /I"C:\cef\include" /I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include" %IncludeList%  %IncludeList1% /out:Optimade\Optimade.exe
+cl%CppList% /I"C:\cef\include" /I"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0" /I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include" %IncludeList%  %IncludeList1% "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\lib\x64\libcpmtd.lib"
 PAUSE

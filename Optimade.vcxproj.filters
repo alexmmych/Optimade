@@ -32,9 +32,6 @@
     <ClInclude Include="headerfiles\ConsoleHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headerfiles\GraphicsHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headerfiles\LoopHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
