@@ -71,7 +71,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\cef\include;C:\cef\libcef_dll;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\cef\libcef_dll;C:\cef\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\cef\Resources;C:\cef\libcef_dll;C:\cef\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,6 +114,9 @@
   <ItemGroup>
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />
     <ClCompile Include="cppfiles\LoopClass.cpp" />
+    <ClCompile Include="CppFiles\simple_app.cpp" />
+    <ClCompile Include="CppFiles\simple_handler.cpp" />
+    <ClCompile Include="CppFiles\simple_handler_win.cpp" />
     <ClCompile Include="cppfiles\Window.cpp" />
     <ClCompile Include="cppfiles\WindowClass.cpp" />
   </ItemGroup>
@@ -121,6 +124,8 @@
     <ClInclude Include="headerfiles\ConsoleHeader.h" />
     <ClInclude Include="headerfiles\LoopHeader.h" />
     <ClInclude Include="headerfiles\pch.h" />
+    <ClInclude Include="HeaderFiles\simple_app.h" />
+    <ClInclude Include="HeaderFiles\simple_handler.h" />
     <ClInclude Include="headerfiles\WindowHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

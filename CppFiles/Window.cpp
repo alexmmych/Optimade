@@ -4,9 +4,10 @@
 /*   in order to fastly create a window in just a single line.                                                       */
 /*                                                                                                                   */
 /*********************************************************************************************************************/
-#include "../HeaderFiles/pch.h"
-#include "../HeaderFiles/WindowHeader.h"
-#include "../HeaderFiles/ConsoleHeader.h"
+#include "C:/Optimade/HeaderFiles/pch.h"
+#include "C:/Optimade/HeaderFiles/WindowHeader.h"
+#include "C:/Optimade/HeaderFiles/ConsoleHeader.h"
+#include "C:/Optimade/HeaderFiles/simple_app.h"
 
 class TempClass : public CefApp {
 public:
@@ -42,8 +43,6 @@ int WINAPI WinMain(
 
 	CefEnableHighDPISupport();
 
-    CreateConsole();
-
 	CefMainArgs args(hInstance);
 
 	void* sandbox_info = nullptr;
@@ -52,15 +51,16 @@ int WINAPI WinMain(
 
 	settings.no_sandbox = true;
 
-	int exit_code = CefExecuteProcess(args, nullptr, sandbox_info);
+	CefRefPtr<SimpleApp> app(new SimpleApp);
+
+	int exit_code = CefExecuteProcess(args, app.get(), sandbox_info);
 	if (exit_code >= 0)
 		return exit_code;
 
-	CefRefPtr<TempClass> app(new TempClass);
 
     CefInitialize(args, settings, app.get(), sandbox_info);
 
-	CefDoMessageLoopWork();
+	CefRunMessageLoop();
 
     CefShutdown();
 
