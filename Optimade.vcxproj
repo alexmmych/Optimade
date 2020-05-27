@@ -128,6 +128,9 @@
     <ClInclude Include="HeaderFiles\simple_handler.h" />
     <ClInclude Include="headerfiles\WindowHeader.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Website.html" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
