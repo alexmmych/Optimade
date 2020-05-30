@@ -4,6 +4,7 @@
 
 #include <windows.h>
 #include <dwmapi.h>
+#pragma comment (lib, "dwmapi.lib")
 
 #pragma comment (lib, "libcef.lib")
 #pragma comment(lib,"libcef_dll_wrapper.lib")

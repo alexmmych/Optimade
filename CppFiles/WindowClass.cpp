@@ -88,6 +88,8 @@ void Window::CreateAWindow()
 		NULL //Window "LpParam" parameter, don't know how to use it so null (To do: figure out what it does and where to use it).
 	);
 
+
+
 }
 
 void Window::ShowAWindow()
@@ -103,19 +105,44 @@ Window::~Window()
 
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
-
+	RECT rcClient;
+	GetWindowRect(hwind, &rcClient);
 
 	switch (msg)
 	{
-	case WM_CREATE: {
+	case WM_ACTIVATE: {
+		// Extend the frame into the client area.
+		MARGINS margins;
+		HRESULT hr = S_OK;
 
+		margins.cxLeftWidth = rcClient.left;
+		margins.cxRightWidth = rcClient.right;
+		margins.cyBottomHeight = rcClient.bottom;
+		margins.cyTopHeight = rcClient.top;
+
+		hr = DwmExtendFrameIntoClientArea(hwind, &margins);
+
+		if (!SUCCEEDED(hr)) {
+			return 0;
+		}
+
+		break;
+	}
+	case WM_CREATE: {
+		// Inform the application of the frame change.
+		SetWindowPos(hwind,
+			NULL,
+			rcClient.left, rcClient.top,
+			rcClient.right - rcClient.left,
+			rcClient.bottom - rcClient.top,
+			SWP_FRAMECHANGED);
 		break;
 	}
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 
-		FillRect(hdc,&ps.rcPaint,(HBRUSH)(COLOR_WINDOW + 1));
+		FillRect(hdc,&ps.rcPaint, (HBRUSH)GetStockObject(COLOR_WINDOW+1));
 
 		break;
 	}

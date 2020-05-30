@@ -12,7 +12,7 @@ private:
 
 	HINSTANCE HandleInstance;
 	const LPCWSTR WindowClass = L"WindClass1";
-	const LPCWSTR WindowName = L"Window";
+	const LPCWSTR WindowName = L"Optimade";
 
 	static HWND WindowHandle;
 
