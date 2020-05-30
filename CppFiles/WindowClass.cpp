@@ -146,6 +146,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		LPCWSTR themeList = L"BUTTON;CLOCK;COMBOBOX";
 
+		RECT barRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(30) };
+
+		FillRect(hdc, &barRect, (HBRUSH)GetStockObject(DKGRAY_BRUSH));
+
 		DrawThemeTextEx(
 			OpenThemeData(hwind, themeList),
 			hdc,
@@ -153,9 +157,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			CBS_MIXEDNORMAL,
 			L"Optimade",
 			-1,
-			DT_LEFT,
-			&rcClient,
+			DT_CENTER,
+			&barRect,
 			NULL);
+
+		// DrawFrameControl(hdc, &barRect, DFC_CAPTION, DFCS_CAPTIONCLOSE);
 
 		break;
 	}
