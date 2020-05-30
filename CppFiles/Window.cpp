@@ -41,28 +41,8 @@ int WINAPI WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	CefEnableHighDPISupport();
+	Window window;
 
-	CefMainArgs args(hInstance);
-
-	void* sandbox_info = nullptr;
-
-	CefSettings settings;
-
-	settings.no_sandbox = true;
-
-	CefRefPtr<SimpleApp> app(new SimpleApp);
-
-	int exit_code = CefExecuteProcess(args, app.get(), sandbox_info);
-	if (exit_code >= 0)
-		return exit_code;
-
-
-    CefInitialize(args, settings, app.get(), sandbox_info);
-
-	CefRunMessageLoop();
-
-    CefShutdown();
 
 	return 0;
 }

@@ -30,6 +30,8 @@ Window::Window()
 
 	MessageLoop();
 
+	CefShutdown();
+
 }
 
 void Window::CreateWindowClass()
@@ -42,8 +44,8 @@ void Window::CreateWindowClass()
 	wcx.cbWndExtra = 0;
 	wcx.hInstance = HandleInstance;
 	wcx.hIcon = NULL;     //To do: Create and apply an icon here.
-	wcx.hCursor = LoadCursor(NULL, IDC_ARROW);     //Idea: Maybe a custom cursor?
-	wcx.hbrBackground = NULL;     //To do: Replace with a call to the drawing process of Direct3D.
+	wcx.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcx.hbrBackground = NULL;
 	wcx.lpszMenuName = NULL;
 	wcx.lpszClassName = WindowClass;
 	wcx.hIconSm = NULL;     //To do: Make small icon aswell.
@@ -106,6 +108,14 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	switch (msg)
 	{
 	case WM_CREATE: {
+
+		break;
+	}
+	case WM_PAINT: {
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hwind, &ps);
+
+		FillRect(hdc,&ps.rcPaint,(HBRUSH)(COLOR_WINDOW + 1));
 
 		break;
 	}
