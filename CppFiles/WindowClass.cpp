@@ -146,6 +146,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		break;
 	}
+	case WM_NCCALCSIZE: {
+		wparam = true;
+		return 0;
+		break;
+	}
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		break;
