@@ -144,6 +144,19 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		FillRect(hdc,&ps.rcPaint, (HBRUSH)GetStockObject(COLOR_WINDOW+1));
 
+		LPCWSTR themeList = L"BUTTON;CLOCK;COMBOBOX";
+
+		DrawThemeTextEx(
+			OpenThemeData(hwind, themeList),
+			hdc,
+			NULL,
+			CBS_MIXEDNORMAL,
+			L"Optimade",
+			-1,
+			DT_LEFT,
+			&rcClient,
+			NULL);
+
 		break;
 	}
 	case WM_NCCALCSIZE: {

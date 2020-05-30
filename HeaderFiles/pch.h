@@ -4,7 +4,11 @@
 
 #include <windows.h>
 #include <dwmapi.h>
+#include <vssym32.h>
+#include <Uxtheme.h>
+
 #pragma comment (lib, "dwmapi.lib")
+#pragma comment (lib, "UxTheme.lib")
 
 #pragma comment (lib, "libcef.lib")
 #pragma comment(lib,"libcef_dll_wrapper.lib")
