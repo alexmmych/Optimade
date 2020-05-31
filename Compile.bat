@@ -1,6 +1,11 @@
 SET "sourcedir=C:\Optimade\CppFiles\"
+
 SET "includedir=C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\"
 SET "includedir1=C:\cef\include\"
+
+SET "librarydir=C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64"
+SET "msvcdir=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\lib\x64"
+SET "ucrtdir=C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\ucrt\x64"
 
 cd %sourcedir%
 
@@ -37,5 +42,6 @@ ECHO !IncludeList1!
 
 )
 
-cl%CppList% /I"C:\cef\include" /I"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0" /I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include" %IncludeList%  %IncludeList1% "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\lib\x64\libcpmtd.lib"
+
+cl /FeC:\Optimade\DebugBuild\Optimade /FoC:\Optimade\DebugBuild\ /EHsc %CppList% /I"C:\cef\include" /I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.26.28801\include" %IncludeList%  %IncludeList1% /MDd /link /LIBPATH:"%librarydir%" /LIBPATH:"%msvcdir%" /LIBPATH:"%ucrtdir%" /LIBPATH:"C:\Optimade\DebugBuild"
 PAUSE

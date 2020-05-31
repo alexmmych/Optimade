@@ -148,7 +148,14 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		RECT barRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(30) };
 
-		FillRect(hdc, &barRect, (HBRUSH)GetStockObject(DKGRAY_BRUSH));
+		/*THEMEAPI DrawThemeBackground(
+			HTHEME  hTheme,
+			HDC     hdc,
+			int     iPartId,
+			int     iStateId,
+			LPCRECT pRect,
+			LPCRECT pClipRect
+		);*/
 
 		DrawThemeTextEx(
 			OpenThemeData(hwind, themeList),
@@ -157,7 +164,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			CBS_MIXEDNORMAL,
 			L"Optimade",
 			-1,
-			DT_CENTER,
+			DT_VCENTER,
 			&barRect,
 			NULL);
 

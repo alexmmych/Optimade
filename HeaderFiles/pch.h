@@ -13,6 +13,10 @@
 #pragma comment (lib, "libcef.lib")
 #pragma comment(lib,"libcef_dll_wrapper.lib")
 
+#pragma comment (lib,"user32.lib")
+#pragma comment (lib,"gdi32.lib")
+#pragma comment (lib,"kernel32.lib")
+
 
 #include "cef_app.h"
 #include "internal\cef_win.h"
