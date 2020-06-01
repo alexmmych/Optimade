@@ -67,7 +67,7 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, //Makes the boxes to destroy, minimize and maximize the window.
+		NULL, //Makes the boxes to destroy, minimize and maximize the window.
 
 		CW_USEDEFAULT, //X location of window
 
@@ -142,44 +142,76 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 
-		FillRect(hdc,&ps.rcPaint, (HBRUSH)GetStockObject(COLOR_WINDOW+1));
+		FillRect(hdc, &ps.rcPaint, (HBRUSH)GetStockObject(COLOR_WINDOW + 1));
 
-		LPCWSTR themeList = L"BUTTON;CLOCK;COMBOBOX";
+		HTHEME hTheme = OpenThemeData(NULL, L"CompositedWindow::Window");
+
+		CreateCompatibleDC(hdc);
+
+		int cx = rcClient.right - rcClient.left;
+		int cy = rcClient.bottom - rcClient.top;
+
+		// Define the BITMAPINFO structure used to draw text.
+		// Note that biHeight is negative. This is done because
+		// DrawThemeTextEx() needs the bitmap to be in top-to-bottom
+		// order.
+		BITMAPINFO dib = { 0 };
+		dib.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		dib.bmiHeader.biWidth = cx;
+		dib.bmiHeader.biHeight = -cy;
+		dib.bmiHeader.biPlanes = 1;
+		dib.bmiHeader.biCompression = BI_RGB;
+
+		// Setup the theme drawing options.
+		DTTOPTS DttOpts = { sizeof(DTTOPTS) };
+		DttOpts.dwFlags = DTT_COMPOSITED | DTT_GLOWSIZE;
+		DttOpts.iGlowSize = 15;
+
+		// Select a font.
+		LOGFONTW lgFont;
+		HFONT hFontOld = NULL;
+
+		GetThemeSysFont(hTheme, TMT_CAPTIONFONT, &lgFont);
+		HFONT hFont = CreateFontIndirectW(&lgFont);
+		hFontOld = (HFONT)SelectObject(hdc, hFont);
+
+
 
 		RECT barRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(30) };
 
-		/*THEMEAPI DrawThemeBackground(
-			HTHEME  hTheme,
-			HDC     hdc,
-			int     iPartId,
-			int     iStateId,
-			LPCRECT pRect,
-			LPCRECT pClipRect
-		);*/
-
 		DrawThemeTextEx(
-			OpenThemeData(hwind, themeList),
+			hTheme,
 			hdc,
 			NULL,
-			CBS_MIXEDNORMAL,
+			NULL,
 			L"Optimade",
 			-1,
-			DT_VCENTER,
-			&barRect,
-			NULL);
+			DT_LEFT | DT_WORD_ELLIPSIS,
+			&ps.rcPaint,
+			&DttOpts);
 
 		// DrawFrameControl(hdc, &barRect, DFC_CAPTION, DFCS_CAPTIONCLOSE);
 
 		break;
 	}
 	case WM_NCCALCSIZE: {
-		wparam = true;
-		return 0;
+		if (wparam == true) {
+			// Calculate new NCCALCSIZE_PARAMS based on custom NCA inset.
+			NCCALCSIZE_PARAMS* pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
+
+			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 0;
+			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 0;
+			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 0;
+			pncsp->rgrc[0].bottom = pncsp->rgrc[0].bottom - 0;
+
+			return 0;
+		}
 		break;
 	}
-	case WM_CLOSE:
+	case WM_CLOSE: {
 		PostQuitMessage(0);
 		break;
+	}
 	case WM_KEYDOWN:
 	{
 		switch (wparam)
@@ -191,8 +223,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		break;
 	}
 	case WM_DESTROY:
+	{
 		PostQuitMessage(0);
 		break;
 	}
 	return DefWindowProcW(hwind, msg, wparam, lparam);
-}
+		}
+	}
+
