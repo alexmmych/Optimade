@@ -67,13 +67,13 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		NULL, //Makes the boxes to destroy, minimize and maximize the window.
+		WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, //Makes the boxes to destroy, minimize and maximize the window.
 
 		CW_USEDEFAULT, //X location of window
 
 		0, //Y location of window (it's 0 because "CW_USEDEFAULT" on the "X" parameter overwrites it).
 
-		windowRect.right - windowRect.left , //Width parameter of window.
+		windowRect.right - windowRect.left, //Width parameter of window.
 
 		windowRect.bottom - windowRect.top, //Height parameter of window (it's 0 because "CW_USEDEFAULT" on the "Width" parameter overwrites it)
 
@@ -122,10 +122,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		hr = DwmExtendFrameIntoClientArea(hwind, &margins);
 
-		if (!SUCCEEDED(hr)) {
-			return 0;
-		}
-
 		break;
 	}
 	case WM_CREATE: {
@@ -146,6 +142,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		HTHEME hTheme = OpenThemeData(NULL, L"CompositedWindow::Window");
 
+		HBRUSH blackBrush = CreateSolidBrush(RGB(32, 32, 32));
+
 		CreateCompatibleDC(hdc);
 
 		int cx = rcClient.right - rcClient.left;
@@ -164,8 +162,9 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		// Setup the theme drawing options.
 		DTTOPTS DttOpts = { sizeof(DTTOPTS) };
-		DttOpts.dwFlags = DTT_COMPOSITED | DTT_GLOWSIZE;
+		DttOpts.dwFlags = DTT_COMPOSITED | DTT_GLOWSIZE | DTT_TEXTCOLOR ;
 		DttOpts.iGlowSize = 15;
+		DttOpts.crText = RGB(255,255,255);
 
 		// Select a font.
 		LOGFONTW lgFont;
@@ -176,8 +175,12 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		hFontOld = (HFONT)SelectObject(hdc, hFont);
 
 
-
 		RECT barRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(30) };
+
+		RECT title{ 5, 0 ,static_cast<LONG>(width), static_cast<LONG>(30) };
+
+		FillRect(hdc, &barRect, (HBRUSH)(blackBrush));
+
 
 		DrawThemeTextEx(
 			hTheme,
@@ -186,8 +189,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			NULL,
 			L"Optimade",
 			-1,
-			DT_LEFT | DT_WORD_ELLIPSIS,
-			&ps.rcPaint,
+			DT_VCENTER | DT_SINGLELINE,
+			&title,
 			&DttOpts);
 
 		// DrawFrameControl(hdc, &barRect, DFC_CAPTION, DFCS_CAPTIONCLOSE);
@@ -228,6 +231,5 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		break;
 	}
 	return DefWindowProcW(hwind, msg, wparam, lparam);
-		}
 	}
-
+}
