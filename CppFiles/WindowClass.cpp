@@ -108,6 +108,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	MARGINS margins;
 	GetWindowRect(hwind, &rcClient);
 
+	DwmDefWindowProc(hwind, msg, wparam, lparam, NULL);
+
 	switch (msg)
 	{
 	case WM_ACTIVATE: {
@@ -173,11 +175,16 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		HFONT hFont = CreateFontIndirectW(&lgFont);
 		hFontOld = (HFONT)SelectObject(hdc, hFont);
 
-		RECT barRect{ 0,0,width,30 };
+		RECT barRect{ 0,0,width,35 };
 		RECT title{ 5,0,width,30 };
+
+		RECT rand{ 100,100,100, 100 };
 
 
 		FillRect(hdc, &barRect, (HBRUSH)(blackBrush));
+
+		FillRect(hdc, &rand, (HBRUSH)(blackBrush));
+
 
 		DrawThemeTextEx(
 			hTheme,
@@ -189,8 +196,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			DT_VCENTER | DT_SINGLELINE,
 			&title,
 			&DttOpts);
-
-		// DrawFrameControl(hdc, &barRect, DFC_CAPTION, DFCS_CAPTIONCLOSE);
 
 		break;
 	}
@@ -227,6 +232,9 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PostQuitMessage(0);
 		break;
 	}
-	return DefWindowProcW(hwind, msg, wparam, lparam);
+
 	}
+	return DefWindowProcW(hwind, msg, wparam, lparam);
 }
+
+
