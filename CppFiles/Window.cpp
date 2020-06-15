@@ -7,17 +7,7 @@
 #include "C:/Optimade/HeaderFiles/pch.h"
 #include "C:/Optimade/HeaderFiles/WindowHeader.h"
 #include "C:/Optimade/HeaderFiles/ConsoleHeader.h"
-#include "C:/Optimade/HeaderFiles/simple_app.h"
 
-class TempClass : public CefApp {
-public:
-	// Various class methods here...
-
-private:
-	// Various class members here...
-
-	IMPLEMENT_REFCOUNTING(TempClass);  // Provides atomic refcounting implementation.
-};
 
 
                /***********************************************************/
@@ -41,8 +31,7 @@ int WINAPI WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	Window window;
-
+    Window::Instance();
 
 	return 0;
 }

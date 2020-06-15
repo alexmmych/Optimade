@@ -8,6 +8,11 @@ class Window : public Loop
 {
 private:
 
+	static Window* ptrInstance;
+
+	Window();
+	~Window();
+
 	//Variables used in the functions of this class.
 
 	HINSTANCE HandleInstance;
@@ -16,8 +21,8 @@ private:
 
 	static HWND WindowHandle;
 
-	static UINT width;
-	static UINT height;
+	static LONG width;
+	static LONG height;
 
 	RECT windowRect;
 
@@ -36,12 +41,15 @@ private:
 	static LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
 public:
-//Constructor and destructor.
-
-	Window();
-	~Window();
 
 	static HWND GetWindowHandle() { return WindowHandle; };
+
+	static Window& Instance() {
+		if (!ptrInstance) {
+			ptrInstance = new Window();
+		}
+		return *ptrInstance;
+	}
 
 };
 

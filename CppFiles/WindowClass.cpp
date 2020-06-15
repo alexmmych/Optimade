@@ -9,15 +9,16 @@
 #include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/WindowHeader.h"
 
-UINT Window::width = 1920;
-UINT Window::height = 1080;
+LONG Window::width = 1000;
+LONG Window::height = 1000;
 HWND Window::WindowHandle = nullptr;
+Window* Window::ptrInstance = nullptr;
 
 
 Window::Window()
 	:
 	HandleInstance(GetModuleHandle(nullptr)),
-	windowRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) }//Makes "HandleInstance" the hInstance of "WinMain".
+	windowRect{0,0,width,height}//Makes "HandleInstance" the hInstance of "WinMain".
 {
 
 	CreateWindowClass();
@@ -29,8 +30,6 @@ Window::Window()
 	ShowAWindow();
 
 	MessageLoop();
-
-	CefShutdown();
 
 }
 
@@ -106,13 +105,13 @@ Window::~Window()
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	RECT rcClient;
+	MARGINS margins;
 	GetWindowRect(hwind, &rcClient);
 
 	switch (msg)
 	{
 	case WM_ACTIVATE: {
 		// Extend the frame into the client area.
-		MARGINS margins;
 		HRESULT hr = S_OK;
 
 		margins.cxLeftWidth = rcClient.left;
@@ -174,13 +173,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		HFONT hFont = CreateFontIndirectW(&lgFont);
 		hFontOld = (HFONT)SelectObject(hdc, hFont);
 
+		RECT barRect{ 0,0,width,30 };
+		RECT title{ 5,0,width,30 };
 
-		RECT barRect{ 0, 0, static_cast<LONG>(width), static_cast<LONG>(30) };
-
-		RECT title{ 5, 0 ,static_cast<LONG>(width), static_cast<LONG>(30) };
 
 		FillRect(hdc, &barRect, (HBRUSH)(blackBrush));
-
 
 		DrawThemeTextEx(
 			hTheme,
@@ -198,7 +195,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		break;
 	}
 	case WM_NCCALCSIZE: {
-		if (wparam == true) {
+		if (lparam) {
 			// Calculate new NCCALCSIZE_PARAMS based on custom NCA inset.
 			NCCALCSIZE_PARAMS* pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
 
