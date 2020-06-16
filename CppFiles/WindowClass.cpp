@@ -105,16 +105,20 @@ Window::~Window()
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	RECT rcClient;
-	MARGINS margins;
+	LRESULT result;
 	GetWindowRect(hwind, &rcClient);
 
-	DwmDefWindowProc(hwind, msg, wparam, lparam, NULL);
+	if (DwmDefWindowProc(hwind, msg, wparam, lparam, &result)) {
+		return result;
+	}
+
 
 	switch (msg)
 	{
 	case WM_ACTIVATE: {
 		// Extend the frame into the client area.
 		HRESULT hr = S_OK;
+		MARGINS margins;
 
 		margins.cxLeftWidth = rcClient.left;
 		margins.cxRightWidth = rcClient.right;
@@ -176,7 +180,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		hFontOld = (HFONT)SelectObject(hdc, hFont);
 
 		RECT barRect{ 0,0,width,35 };
-		RECT title{ 5,0,width,30 };
+		RECT title{ 10,5,width,30 };
 
 		RECT rand{ 100,100,100, 100 };
 
@@ -206,7 +210,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 0;
 			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 0;
-			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 0;
+			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 5;
 			pncsp->rgrc[0].bottom = pncsp->rgrc[0].bottom - 0;
 
 			return 0;
