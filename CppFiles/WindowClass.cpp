@@ -108,11 +108,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	LRESULT result;
 	GetWindowRect(hwind, &rcClient);
 
-	if (DwmDefWindowProc(hwind, msg, wparam, lparam, &result)) {
-		return result;
-	}
-
-
 	switch (msg)
 	{
 	case WM_ACTIVATE: {
@@ -182,12 +177,19 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		RECT barRect{ 0,0,width,35 };
 		RECT title{ 10,5,width,30 };
 
-		RECT rand{ 100,100,100, 100 };
 
+		DTBGOPTS DtbgOpts = { sizeof(DTBGOPTS) };
+		DtbgOpts.dwFlags = DTBG_VALIDBITS;
+		DtbgOpts.rcClip = barRect;
 
-		FillRect(hdc, &barRect, (HBRUSH)(blackBrush));
-
-		FillRect(hdc, &rand, (HBRUSH)(blackBrush));
+		DrawThemeBackgroundEx(
+			hTheme,
+			hdc,
+			CP_BACKGROUND,
+			NULL,
+			&barRect,
+			&DtbgOpts
+		);
 
 
 		DrawThemeTextEx(
@@ -200,6 +202,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			DT_VCENTER | DT_SINGLELINE,
 			&title,
 			&DttOpts);
+
+		EndPaint(hwind, &ps);
 
 		break;
 	}
