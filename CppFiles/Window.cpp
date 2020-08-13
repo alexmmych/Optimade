@@ -4,9 +4,10 @@
 /*   in order to fastly create a window in just a single line.                                                       */
 /*                                                                                                                   */
 /*********************************************************************************************************************/
-#include "C:/Optimade/HeaderFiles/pch.h"
-#include "C:/Optimade/HeaderFiles/WindowHeader.h"
-#include "C:/Optimade/HeaderFiles/ConsoleHeader.h"
+
+#include "../HeaderFiles/pch.h"
+#include "../HeaderFiles/WindowHeader.h"
+#include "../HeaderFiles/ConsoleHeader.h"
 
 
 
@@ -30,6 +31,9 @@ int WINAPI WinMain(
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+
+
+    CreateConsole();
 
     Window::Instance();
 
