@@ -66,7 +66,7 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, //Makes the boxes to destroy, minimize and maximize the window.
+		WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, //Makes the boxes to destroy, minimize and maximize the window.
 
 		CW_USEDEFAULT, //X location of window
 
@@ -138,70 +138,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)GetStockObject(COLOR_WINDOW + 1));
-
-		HTHEME hTheme = OpenThemeData(NULL, L"CompositedWindow::Window");
-
-		HBRUSH blackBrush = CreateSolidBrush(RGB(32, 32, 32));
-
-		CreateCompatibleDC(hdc);
-
-		int cx = rcClient.right - rcClient.left;
-		int cy = rcClient.bottom - rcClient.top;
-
-		// Define the BITMAPINFO structure used to draw text.
-		// Note that biHeight is negative. This is done because
-		// DrawThemeTextEx() needs the bitmap to be in top-to-bottom
-		// order.
-		BITMAPINFO dib = { 0 };
-		dib.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-		dib.bmiHeader.biWidth = cx;
-		dib.bmiHeader.biHeight = -cy;
-		dib.bmiHeader.biPlanes = 1;
-		dib.bmiHeader.biCompression = BI_RGB;
-
-		// Setup the theme drawing options.
-		DTTOPTS DttOpts = { sizeof(DTTOPTS) };
-		DttOpts.dwFlags = DTT_COMPOSITED | DTT_GLOWSIZE | DTT_TEXTCOLOR ;
-		DttOpts.iGlowSize = 15;
-		DttOpts.crText = RGB(255,255,255);
-
-		// Select a font.
-		LOGFONTW lgFont;
-		HFONT hFontOld = NULL;
-
-		GetThemeSysFont(hTheme, TMT_CAPTIONFONT, &lgFont);
-		HFONT hFont = CreateFontIndirectW(&lgFont);
-		hFontOld = (HFONT)SelectObject(hdc, hFont);
-
-		RECT barRect{ 0,0,width,35 };
-		RECT title{ 10,5,width,30 };
-
-
-		DTBGOPTS DtbgOpts = { sizeof(DTBGOPTS) };
-		DtbgOpts.dwFlags = DTBG_VALIDBITS;
-		DtbgOpts.rcClip = barRect;
-
-		DrawThemeBackgroundEx(
-			hTheme,
-			hdc,
-			CP_BACKGROUND,
-			NULL,
-			&barRect,
-			&DtbgOpts
-		);
-
-
-		DrawThemeTextEx(
-			hTheme,
-			hdc,
-			NULL,
-			NULL,
-			L"Optimade",
-			-1,
-			DT_VCENTER | DT_SINGLELINE,
-			&title,
-			&DttOpts);
+		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
 
 		EndPaint(hwind, &ps);
 
@@ -219,6 +156,14 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 			return 0;
 		}
+		break;
+	}
+	case WM_NCHITTEST: {
+		LRESULT hit = DefWindowProc(hwind, msg, wparam, lparam);
+		if (hit == HTCLIENT) {
+			hit = HTCAPTION;
+		}
+		return hit;
 		break;
 	}
 	case WM_CLOSE: {
@@ -244,5 +189,3 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	return DefWindowProcW(hwind, msg, wparam, lparam);
 }
-
-

@@ -32,7 +32,6 @@ int WINAPI WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-
     CreateConsole();
 
     Window::Instance();
