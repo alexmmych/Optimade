@@ -66,7 +66,7 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_THICKFRAME | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, //Makes the boxes to destroy, minimize and maximize the window.
+		WS_THICKFRAME, 
 
 		CW_USEDEFAULT, //X location of window
 
@@ -138,8 +138,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-
 		EndPaint(hwind, &ps);
 
 		break;
@@ -159,11 +157,14 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		break;
 	}
 	case WM_NCHITTEST: {
-		LRESULT hit = DefWindowProc(hwind, msg, wparam, lparam);
-		if (hit == HTCLIENT) {
-			hit = HTCAPTION;
+		POINT mouse;
+		GetCursorPos(&mouse);
+		ScreenToClient(hwind, &mouse);
+
+		if (mouse.y <= (35)) {
+			return HTCAPTION;
 		}
-		return hit;
+
 		break;
 	}
 	case WM_CLOSE: {
