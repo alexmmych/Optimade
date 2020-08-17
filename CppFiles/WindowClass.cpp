@@ -107,6 +107,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	RECT rcClient;
 	LRESULT result;
 	GetWindowRect(hwind, &rcClient);
+	POINT mouse;
 
 	switch (msg)
 	{
@@ -156,14 +157,60 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		}
 		break;
 	}
+//When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
 	case WM_NCHITTEST: {
-		POINT mouse;
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
 
-		if (mouse.y <= (35)) {
+		//Top part of the window
+		if (mouse.y <= 50) {
+			//Right corner
+			if (mouse.x >= width - 10 && mouse.y <= 10) {
+				return HTTOPRIGHT;
+			}
+			//Left corner
+			if (mouse.x <= 10 && mouse.y <= 10) {
+				return HTTOPLEFT;
+			}
+			//Top part
+			if (mouse.y <= 10) {
+				return HTTOP;
+			}
+			//Window caption
 			return HTCAPTION;
 		}
+
+		//Bottom part of the window
+		if (mouse.y >= height - 10) {
+			//Right corner
+			if (mouse.x >= width - 10) {
+				return HTBOTTOMRIGHT;
+			}
+			//Left corner
+			if (mouse.x <= 10) {
+				return HTBOTTOMLEFT;
+			}
+			//Bottom part 
+			return HTBOTTOM;
+		}
+
+		//Left part of the window 
+		if (mouse.x <= 10) {
+			return HTLEFT;
+		}
+
+		//Right part of the window
+		if (mouse.x >= width - 10) {
+			return HTRIGHT;
+		}
+
+		break;
+	}
+	case WM_SIZE: {
+		GetWindowRect(hwind, &rcClient);
+
+		width = rcClient.right - rcClient.left;
+		height = rcClient.bottom - rcClient.top;
 
 		break;
 	}
