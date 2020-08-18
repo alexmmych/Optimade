@@ -156,8 +156,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return 0;
 		}
 		break;
-	}
-//When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
+	}			  //When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
 	case WM_NCHITTEST: {
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
@@ -226,8 +225,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			PostQuitMessage(0);
 			break;
 		}
-		break;
 	}
+
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);

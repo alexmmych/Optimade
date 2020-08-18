@@ -13,6 +13,8 @@
 #include "C:/cef/include/wrapper/cef_helpers.h"
 #include "../HeaderFiles/simple_handler.h"
 
+#include "../HeaderFiles/WindowHeader.h"
+
 namespace {
 
 // When using the Views framework this object provides the delegate
@@ -124,8 +126,14 @@ void SimpleApp::OnContextInitialized() {
 #if defined(OS_WIN)
     // On Windows we need to specify certain flags that will be passed to
     // CreateWindowEx().
-    window_info.SetAsPopup(NULL, "cefsimple");
+    window_info.SetAsPopup(NULL, "Cefsimple");
 #endif
+    RECT rcClient;
+    HWND WindowHandle = Window::GetWindowHandle();
+
+    GetWindowRect(WindowHandle, &rcClient);
+
+    window_info.SetAsChild(WindowHandle, rcClient);
 
     // Create the first browser window.
     CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,

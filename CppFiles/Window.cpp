@@ -43,11 +43,15 @@ int WINAPI WinMain(
 
     settings.no_sandbox = true;
 
+
+
     int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
     if (exit_code >= 0) {
         // The sub-process terminated, exit now.
         return exit_code;
     }
+
+    Window::Instance();
 
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 

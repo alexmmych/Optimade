@@ -16,6 +16,7 @@ void Loop::MessageLoop()
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+
         }
     }
 }
