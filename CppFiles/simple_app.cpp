@@ -107,7 +107,7 @@ void SimpleApp::OnContextInitialized() {
   // that instead of the default URL.
   url = command_line->GetSwitchValue("url");
   if (url.empty())
-    url = "C:/Optimade/Resources/Website.html";
+    url = "https://www.google.com";
 
   if (use_views) {
     // Create the BrowserView.

@@ -111,6 +111,9 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
+    <Manifest>
+      <AdditionalManifestFiles>C:\Optimade\manifest.xml %(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />

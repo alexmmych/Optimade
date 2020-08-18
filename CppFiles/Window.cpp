@@ -8,6 +8,7 @@
 #include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/WindowHeader.h"
 #include "../HeaderFiles/ConsoleHeader.h"
+#include "../HeaderFiles/simple_app.h"
 
 
 
@@ -32,9 +33,28 @@ int WINAPI WinMain(
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-    CreateConsole();
+    CefMainArgs main_args(hInstance);
 
-    Window::Instance();
+    CefRefPtr<SimpleApp> app(new SimpleApp);
+
+    void* sandbox_info = nullptr;
+
+    CefSettings settings;
+
+    settings.no_sandbox = true;
+
+    int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
+    if (exit_code >= 0) {
+        // The sub-process terminated, exit now.
+        return exit_code;
+    }
+
+    CefInitialize(main_args, settings, app.get(),sandbox_info);
+
+    CefRunMessageLoop();
+
+    // Shut down CEF.
+    CefShutdown();
 
 	return 0;
 }

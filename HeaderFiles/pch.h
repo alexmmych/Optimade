@@ -23,14 +23,14 @@
 #include <gdiplus.h>
 #pragma comment (lib,"Gdiplus.lib")
 
-/*
+
 #include "cef_app.h"
 #include "internal\cef_win.h"
 #include "internal\cef_types_wrappers.h"
 #include "cef_client.h"
 #include "cef_browser.h"
 #include "cef_base.h"
-*/
+
 
 
 #include <iostream>
