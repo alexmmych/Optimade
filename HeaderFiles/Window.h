@@ -1,7 +1,7 @@
 //This is the header file which defines the window class for "WindowClass.cpp".
 
 #pragma once
-#include "LoopHeader.h"
+#include "../HeaderFiles/Loop.h"
 
 /*The main class which creates the window and connects other classes together*/
 class Window : public Loop 

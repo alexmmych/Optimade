@@ -18,45 +18,33 @@
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cppfiles\LoopClass.cpp">
+    <ClCompile Include="cppfiles\Loop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cppfiles\Initialize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cppfiles\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cppfiles\WindowClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CppFiles\simple_app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CppFiles\simple_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CppFiles\simple_handler_win.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headerfiles\ConsoleHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headerfiles\LoopHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headerfiles\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headerfiles\WindowHeader.h">
+    <ClInclude Include="HeaderFiles\CefWindowView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderFiles\simple_app.h">
+    <ClInclude Include="HeaderFiles\CefHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderFiles\simple_handler.h">
+    <ClInclude Include="headerfiles\Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderFiles\CefHeader.h">
+    <ClInclude Include="headerfiles\Loop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headerfiles\Windowr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

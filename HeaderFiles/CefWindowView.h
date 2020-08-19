@@ -1,7 +1,7 @@
 #pragma once
 
 #include "C:/cef/include/cef_app.h"
-#include "../HeaderFiles/WindowHeader.h"
+#include "../HeaderFiles/Window.h"
 
 class WindowView : public CefApp , public Window {
 public:

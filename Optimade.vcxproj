@@ -117,21 +117,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />
-    <ClCompile Include="cppfiles\LoopClass.cpp" />
-    <ClCompile Include="CppFiles\simple_app.cpp" />
-    <ClCompile Include="CppFiles\simple_handler.cpp" />
-    <ClCompile Include="CppFiles\simple_handler_win.cpp" />
+    <ClCompile Include="cppfiles\Loop.cpp" />
+    <ClCompile Include="cppfiles\Initialize.cpp" />
     <ClCompile Include="cppfiles\Window.cpp" />
-    <ClCompile Include="cppfiles\WindowClass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeaderFiles\CefHeader.h" />
-    <ClInclude Include="headerfiles\ConsoleHeader.h" />
-    <ClInclude Include="headerfiles\LoopHeader.h" />
+    <ClInclude Include="HeaderFiles\CefHandler.h" />
+    <ClInclude Include="HeaderFiles\CefWindowView.h" />
+    <ClInclude Include="headerfiles\Console.h" />
+    <ClInclude Include="headerfiles\Loop.h" />
     <ClInclude Include="headerfiles\pch.h" />
-    <ClInclude Include="HeaderFiles\simple_app.h" />
-    <ClInclude Include="HeaderFiles\simple_handler.h" />
-    <ClInclude Include="headerfiles\WindowHeader.h" />
+    <ClInclude Include="headerfiles\Windowr.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Website.html" />
