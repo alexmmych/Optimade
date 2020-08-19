@@ -116,6 +116,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CppFiles\CefHandler.cpp" />
     <ClCompile Include="CppFiles\CefWindowView.cpp" />
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />
     <ClCompile Include="cppfiles\Loop.cpp" />

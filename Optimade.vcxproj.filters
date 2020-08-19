@@ -30,6 +30,9 @@
     <ClCompile Include="CppFiles\CefWindowView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CppFiles\CefHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headerfiles\pch.h">

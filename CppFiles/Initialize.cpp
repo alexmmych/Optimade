@@ -7,6 +7,7 @@
 
 #include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/Console.h"
+#include "../HeaderFiles/CefWindowView.h"
 
 
 
@@ -33,7 +34,7 @@ int WINAPI WinMain(
 
     CefMainArgs main_args(hInstance);
 
-//    CefRefPtr<SimpleApp> app(new SimpleApp);
+    CefRefPtr<WindowView> app(new WindowView);
 
     void* sandbox_info = nullptr;
 
@@ -42,14 +43,13 @@ int WINAPI WinMain(
     settings.no_sandbox = true;
 
 
-
-/*    int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
+    int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
     if (exit_code >= 0) {
         // The sub-process terminated, exit now.
         return exit_code;
-    } */
+    } 
 
-//   CefInitialize(main_args, settings, app.get(),sandbox_info);
+   CefInitialize(main_args, settings, app.get(),sandbox_info);
 
     CefRunMessageLoop();
 
