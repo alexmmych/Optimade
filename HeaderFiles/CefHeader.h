@@ -7,7 +7,7 @@ class WindowView : public CefApp , public Window {
 public:
 	WindowView();
 
-	virtual ~WindowView();
+	~WindowView();
 
 private:
 	// Include the default reference counting implementation.
