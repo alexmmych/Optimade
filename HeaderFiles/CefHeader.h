@@ -1,0 +1,16 @@
+#pragma once
+
+#include "C:/cef/include/cef_app.h"
+#include "../HeaderFiles/WindowHeader.h"
+
+class WindowView : public CefApp , public Window {
+public:
+	WindowView();
+
+	virtual ~WindowView();
+
+private:
+	// Include the default reference counting implementation.
+	IMPLEMENT_REFCOUNTING(WindowView);
+
+};

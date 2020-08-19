@@ -6,7 +6,6 @@
 /*********************************************************************************************************************/
 
 #include "../HeaderFiles/pch.h"
-#include "../HeaderFiles/WindowHeader.h"
 #include "../HeaderFiles/ConsoleHeader.h"
 #include "../HeaderFiles/simple_app.h"
 
@@ -50,8 +49,6 @@ int WINAPI WinMain(
         // The sub-process terminated, exit now.
         return exit_code;
     }
-
-    Window::Instance();
 
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 

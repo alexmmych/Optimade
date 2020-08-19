@@ -125,6 +125,7 @@
     <ClCompile Include="cppfiles\WindowClass.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HeaderFiles\CefHeader.h" />
     <ClInclude Include="headerfiles\ConsoleHeader.h" />
     <ClInclude Include="headerfiles\LoopHeader.h" />
     <ClInclude Include="headerfiles\pch.h" />
