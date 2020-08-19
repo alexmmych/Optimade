@@ -116,6 +116,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CppFiles\CefWindowView.cpp" />
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />
     <ClCompile Include="cppfiles\Loop.cpp" />
     <ClCompile Include="cppfiles\Initialize.cpp" />
@@ -127,7 +128,7 @@
     <ClInclude Include="headerfiles\Console.h" />
     <ClInclude Include="headerfiles\Loop.h" />
     <ClInclude Include="headerfiles\pch.h" />
-    <ClInclude Include="headerfiles\Windowr.h" />
+    <ClInclude Include="HeaderFiles\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Website.html" />

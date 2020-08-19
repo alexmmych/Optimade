@@ -27,6 +27,9 @@
     <ClCompile Include="cppfiles\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CppFiles\CefWindowView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headerfiles\pch.h">
@@ -44,7 +47,7 @@
     <ClInclude Include="headerfiles\Loop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headerfiles\Windowr.h">
+    <ClInclude Include="HeaderFiles\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
