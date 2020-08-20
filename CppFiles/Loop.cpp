@@ -7,16 +7,20 @@
 #include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/Loop.h"
 
-void Loop::MessageLoop()
+void MessageLoop()
 {
+    BOOL boolean;
+    MSG msg = { 0 };
+    POINT p;
+
     while (msg.message != WM_QUIT)
-    {        
+    {
         // Process any messages in the queue.
+        CefDoMessageLoopWork();
         if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
-
         }
     }
 }

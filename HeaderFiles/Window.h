@@ -4,8 +4,7 @@
 #include "../HeaderFiles/Loop.h"
 
 /*The main class which creates the window and connects other classes together*/
-class Window : public Loop 
-{
+class Window {
 private:
 
 	static Window* ptrInstance;

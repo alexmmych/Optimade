@@ -29,8 +29,6 @@ Window::Window()
 
 	ShowAWindow();
 
-	MessageLoop();
-
 }
 
 void Window::CreateWindowClass()
@@ -60,7 +58,7 @@ void Window::CreateAWindow()
 
 	WindowHandle = CreateWindowExW
 	(
-		WS_EX_OVERLAPPEDWINDOW, //To do: Allow user to make a fullscreen with "WS_POPUP"
+		0, //To do: Allow user to make a fullscreen with "WS_POPUP"
 
 		WindowClass,
 
