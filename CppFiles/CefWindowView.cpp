@@ -33,6 +33,11 @@ void WindowView::OnContextInitialized() {
 		nullptr, nullptr);
 }
 
+void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
+	command_line->AppendSwitch("disable-gpu");
+	command_line->AppendSwitch("no-sanbox");
+}
+
 WindowView::~WindowView() {
 
 }

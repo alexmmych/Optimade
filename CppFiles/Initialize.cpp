@@ -49,9 +49,7 @@ int WINAPI WinMain(
         return exit_code;
     } 
 
-   CefInitialize(main_args, settings, app.get(),sandbox_info);
-
-    CefRunMessageLoop();
+    CefInitialize(main_args, settings, app.get(),sandbox_info);
 
     // Shut down CEF.
     CefShutdown();

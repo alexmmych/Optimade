@@ -17,6 +17,7 @@ public:
 
 // CefBrowserProcessHandler methods:
 	virtual void OnContextInitialized() OVERRIDE;
+	virtual void OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) OVERRIDE;
 
 private:
 	// Include the default reference counting implementation.
