@@ -107,6 +107,9 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	GetWindowRect(hwind, &rcClient);
 	POINT mouse;
 
+	//Get CefHandler instance
+	CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
+
 	switch (msg)
 	{
 	case WM_ACTIVATE: {
@@ -136,6 +139,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
+
+		InvalidateRect(hwind, &rcClient, true);
 
 		EndPaint(hwind, &ps);
 
@@ -203,18 +208,16 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		break;
 	}
-	case WM_SIZE: {
+	case WM_SIZING: {
 		GetWindowRect(hwind, &rcClient);
 
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
 
-		//Get CefHandler instance
-		CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
-		
-		//Change window size of the browser on resize
-		SetWindowPos(handle->WindowBrowser, HWND_TOP, NULL, NULL, width, height, SWP_NOMOVE);
+		handle->host->WasResized();
 
+		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
+	
 		break;
 	}
 	case WM_CLOSE: {

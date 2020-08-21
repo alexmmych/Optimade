@@ -27,8 +27,9 @@ void WindowView::OnContextInitialized() {
 
 	window_info.SetAsChild(WindowHandle, rcClient);
 
+
 	// Create the first browser window.
-	CefBrowserHost::CreateBrowserSync(window_info, handler, url, browser_settings,
+	CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
 		nullptr, nullptr);
 
 	MessageLoop();

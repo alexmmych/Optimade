@@ -41,6 +41,7 @@ int WINAPI WinMain(
     CefSettings settings;
 
     settings.no_sandbox = true;
+    settings.multi_threaded_message_loop = false;
 
 
     int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
