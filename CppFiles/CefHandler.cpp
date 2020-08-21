@@ -14,25 +14,12 @@ CefHandler* CefHandler::GetInstance() {
 
 void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	host = browser->GetHost();
+
+	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 10, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
 
-	//Get the parent window's handle and rectangle
-	HWND handle = Window::GetWindowHandle();
-	RECT rectangle;
-
-	GetWindowRect(handle, &rectangle);
-
-	//The width and the height of the window.
-	int width = rectangle.right - rectangle.left;
-	int height = rectangle.bottom - rectangle.right;
-
-	//The x and y coordinates.
-	int x = rectangle.left;
-	int y = rectangle.top;
-
-	rect.Set(x, y, width, height);
 }
 
 bool CefHandler::GetScreenInfo(CefRefPtr<CefBrowser> browser, CefScreenInfo& screen_info) {

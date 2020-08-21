@@ -21,9 +21,6 @@ private:
 
 	static HWND WindowHandle;
 
-	static LONG width;
-	static LONG height;
-
 	RECT windowRect;
 
 	//These functions are the processes which are called when a "Window" class is created.
@@ -43,6 +40,9 @@ private:
 public:
 
 	static HWND GetWindowHandle() { return WindowHandle; };
+
+	static LONG width;
+	static LONG height;
 
 	static Window& Instance() {
 		if (!ptrInstance) {
