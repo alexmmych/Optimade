@@ -209,8 +209,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
 
+		//Get CefHandler instance
 		CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
-			 
+		
+		//Change window size of the browser on resize
 		SetWindowPos(handle->WindowBrowser, HWND_TOP, NULL, NULL, width, height, SWP_NOMOVE);
 
 		break;
