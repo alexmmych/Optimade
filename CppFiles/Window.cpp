@@ -209,6 +209,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
 
+		CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
+			 
+		SetWindowPos(handle->WindowBrowser, HWND_TOP, NULL, NULL, width, height, SWP_NOMOVE);
+
 		break;
 	}
 	case WM_CLOSE: {

@@ -1,5 +1,4 @@
 #include "../HeaderFiles/CefWindowView.h"
-#include "../HeaderFiles/CefHandler.h"
 
 WindowView::WindowView() {}
 
@@ -29,7 +28,7 @@ void WindowView::OnContextInitialized() {
 	window_info.SetAsChild(WindowHandle, rcClient);
 
 	// Create the first browser window.
-	CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
+	CefBrowserHost::CreateBrowserSync(window_info, handler, url, browser_settings,
 		nullptr, nullptr);
 
 	MessageLoop();
@@ -38,7 +37,6 @@ void WindowView::OnContextInitialized() {
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
 	command_line->AppendSwitch("disable-gpu");
 	command_line->AppendSwitch("no-sanbox");
-	command_line->AppendSwitch("multi-threaded-message-loop");
 }
 
 WindowView::~WindowView() {

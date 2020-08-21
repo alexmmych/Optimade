@@ -2,6 +2,7 @@
 
 #pragma once
 #include "../HeaderFiles/Loop.h"
+#include "../HeaderFiles/CefHandler.h"
 
 /*The main class which creates the window and connects other classes together*/
 class Window {

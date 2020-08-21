@@ -2,6 +2,7 @@
 
 #include "C:/cef/include/cef_app.h"
 #include "../HeaderFiles/Window.h"
+#include "../HeaderFiles/CefHandler.h"
 
 class WindowView : public CefApp, public CefBrowserProcessHandler {
 public:

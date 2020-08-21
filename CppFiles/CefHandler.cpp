@@ -12,6 +12,12 @@ CefHandler* CefHandler::GetInstance() {
 	return cef_instance;
 }
 
-CefHandler::~CefHandler() {
-
+void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
+	WindowBrowser = browser->GetHost()->GetWindowHandle();
 }
+
+
+CefHandler::~CefHandler() {
+	cef_instance = nullptr;
+}
+
