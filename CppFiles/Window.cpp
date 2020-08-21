@@ -216,7 +216,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		handle->host->WasResized();
 
-		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
+		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
+		//is highly noticeable.
+
+		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 10, 35, width, height, SWP_SHOWWINDOW);
 	
 		break;
 	}
