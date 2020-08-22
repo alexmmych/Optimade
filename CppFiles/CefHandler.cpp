@@ -1,4 +1,5 @@
 #include "../HeaderFiles/CefHandler.h"
+#include "../HeaderFiles/pch.h"
 
 namespace {
 	CefHandler* cef_instance = nullptr;
@@ -13,9 +14,17 @@ CefHandler* CefHandler::GetInstance() {
 }
 
 void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
+	//Sets host object for the parent window.
 	host = browser->GetHost();
 
-	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 10, 35, Window::width, Window::height, SWP_SHOWWINDOW);
+	HWND browserWindow = GetWindow(host->GetWindowHandle(), GW_CHILD);
+
+	UINT_PTR uIdSubclass;
+	DWORD_PTR dwRefData;
+
+	SetWindowSubclass(browserWindow, Window::SubclassWindowProcedure, uIdSubclass, dwRefData);
+
+	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {

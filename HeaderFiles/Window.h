@@ -34,12 +34,15 @@ private:
 	//Shows the window.
 	void ShowAWindow();
 
-//The window procedure callback.
+//The window procedure callback of the main window.
 	static LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
 public:
 
 	static HWND GetWindowHandle() { return WindowHandle; };
+
+//The window procedure callback of the browser window. 
+	static LRESULT CALLBACK SubclassWindowProcedure(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
 
 	static LONG width;
 	static LONG height;

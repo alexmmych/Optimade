@@ -6,8 +6,8 @@
 /*                                                                                                                   */
 /*********************************************************************************************************************/
 
-#include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/Window.h"
+#include "../HeaderFiles/pch.h"
 
 LONG Window::width = 1000;
 LONG Window::height = 1000;
@@ -85,8 +85,6 @@ void Window::CreateAWindow()
 		NULL //Window "LpParam" parameter, don't know how to use it so null (To do: figure out what it does and where to use it).
 	);
 
-
-
 }
 
 void Window::ShowAWindow()
@@ -102,12 +100,12 @@ Window::~Window()
 
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
+
 	RECT rcClient;
 	LRESULT result;
 	GetWindowRect(hwind, &rcClient);
 	POINT mouse;
 
-	//Get CefHandler instance
 	CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
 
 	switch (msg)
@@ -134,6 +132,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			rcClient.right - rcClient.left,
 			rcClient.bottom - rcClient.top,
 			SWP_FRAMECHANGED);
+
 		break;
 	}
 	case WM_PAINT: {
@@ -219,7 +218,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
 
-		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 10, 35, width, height, SWP_SHOWWINDOW);
+		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 0, 35, width, height, SWP_SHOWWINDOW);
 	
 		break;
 	}
@@ -245,4 +244,73 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 	}
 	return DefWindowProcW(hwind, msg, wparam, lparam);
+}
+
+LRESULT CALLBACK Window::SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+{
+	POINT mouse;
+
+	switch (message) {
+
+	case WM_NCHITTEST: {
+		GetCursorPos(&mouse);
+		ScreenToClient(hWnd, &mouse);
+
+		//Top part of the window
+		if (mouse.y <= 50) {
+			//Right corner
+			if (mouse.x >= width - 10 && mouse.y <= 10) {
+				return HTTOPRIGHT;
+			}
+			//Left corner
+			if (mouse.x <= 10 && mouse.y <= 10) {
+				return HTTOPLEFT;
+			}
+			//Top part
+			if (mouse.y <= 10) {
+				return HTTOP;
+			}
+			//Window caption
+			return HTCAPTION;
+		}
+
+		//Bottom part of the window
+		if (mouse.y >= height - 10) {
+			//Right corner
+			if (mouse.x >= width - 10) {
+				return HTBOTTOMRIGHT;
+			}
+			//Left corner
+			if (mouse.x <= 10) {
+				return HTBOTTOMLEFT;
+			}
+			//Bottom part 
+			return HTBOTTOM;
+		}
+
+		//Left part of the window 
+		if (mouse.x <= 10) {
+			return HTLEFT;
+		}
+
+		//Right part of the window
+		if (mouse.x >= width - 10) {
+			return HTRIGHT;
+		}
+
+		break;
+	}
+	case WM_KEYDOWN:
+	{
+		switch (wParam)
+		{
+		case VK_ESCAPE:
+			PostQuitMessage(0);
+			break;
+		}
+	}
+
+	}
+
+	return DefSubclassProc(hWnd, message, wParam, lParam);
 }
