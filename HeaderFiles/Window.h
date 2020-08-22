@@ -39,10 +39,10 @@ private:
 
 public:
 
-	static HWND GetWindowHandle() { return WindowHandle; };
+	//The window procedure callback of the browser window. 
+	static LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
 
-//The window procedure callback of the browser window. 
-	static LRESULT CALLBACK SubclassWindowProcedure(HWND, UINT, WPARAM, LPARAM, UINT_PTR, DWORD_PTR);
+	static HWND GetWindowHandle() { return WindowHandle; };
 
 	static LONG width;
 	static LONG height;
@@ -55,5 +55,6 @@ public:
 	}
 
 };
+
 
 //Note: Surprisingly good commenting on my part for one of my first actual projects.

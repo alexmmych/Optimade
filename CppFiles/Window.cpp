@@ -217,8 +217,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
-
 		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 0, 35, width, height, SWP_SHOWWINDOW);
+
 	
 		break;
 	}
@@ -248,69 +248,17 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 LRESULT CALLBACK Window::SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
-	POINT mouse;
 
 	switch (message) {
 
-	case WM_NCHITTEST: {
-		GetCursorPos(&mouse);
-		ScreenToClient(hWnd, &mouse);
-
-		//Top part of the window
-		if (mouse.y <= 50) {
-			//Right corner
-			if (mouse.x >= width - 10 && mouse.y <= 10) {
-				return HTTOPRIGHT;
-			}
-			//Left corner
-			if (mouse.x <= 10 && mouse.y <= 10) {
-				return HTTOPLEFT;
-			}
-			//Top part
-			if (mouse.y <= 10) {
-				return HTTOP;
-			}
-			//Window caption
-			return HTCAPTION;
-		}
-
-		//Bottom part of the window
-		if (mouse.y >= height - 10) {
-			//Right corner
-			if (mouse.x >= width - 10) {
-				return HTBOTTOMRIGHT;
-			}
-			//Left corner
-			if (mouse.x <= 10) {
-				return HTBOTTOMLEFT;
-			}
-			//Bottom part 
-			return HTBOTTOM;
-		}
-
-		//Left part of the window 
-		if (mouse.x <= 10) {
-			return HTLEFT;
-		}
-
-		//Right part of the window
-		if (mouse.x >= width - 10) {
-			return HTRIGHT;
-		}
-
+	case WM_GETDLGCODE:
+		return DLGC_WANTALLKEYS;
 		break;
-	}
-	case WM_KEYDOWN:
-	{
-		switch (wParam)
-		{
-		case VK_ESCAPE:
-			PostQuitMessage(0);
-			break;
-		}
-	}
 
+	case WM_NCDESTROY:
+		RemoveWindowSubclass(hWnd, SubclassWindowProcedure, 1);
+		break;
+		
 	}
-
 	return DefSubclassProc(hWnd, message, wParam, lParam);
 }

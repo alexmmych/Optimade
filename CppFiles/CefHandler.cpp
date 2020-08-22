@@ -17,14 +17,14 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	//Sets host object for the parent window.
 	host = browser->GetHost();
 
-	HWND browserWindow = GetWindow(host->GetWindowHandle(), GW_CHILD);
+	HWND b_browserWindow = host->GetWindowHandle();
 
-	UINT_PTR uIdSubclass;
-	DWORD_PTR dwRefData;
+	HWND browserWindow = GetWindow(b_browserWindow, GW_CHILD);
 
-	SetWindowSubclass(browserWindow, Window::SubclassWindowProcedure, uIdSubclass, dwRefData);
+	SetWindowSubclass(browserWindow, Window::SubclassWindowProcedure, 1, 0);
+	
 
-	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
+	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 1, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {

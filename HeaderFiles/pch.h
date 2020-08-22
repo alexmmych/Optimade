@@ -7,6 +7,7 @@
 #include <vssym32.h>
 #include <Uxtheme.h>
 #include <windowsx.h>
+#include <commctrl.h>
 
 #pragma comment (lib, "dwmapi.lib")
 #pragma comment (lib, "UxTheme.lib")
@@ -18,6 +19,7 @@
 #pragma comment (lib,"user32.lib")
 #pragma comment (lib,"gdi32.lib")
 #pragma comment (lib,"kernel32.lib")
+#pragma comment(lib, "comctl32.lib")
 
 #include <objidl.h>
 #include <gdiplus.h>
