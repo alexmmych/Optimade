@@ -39,9 +39,6 @@ private:
 
 public:
 
-	//The window procedure callback of the browser window. 
-	static LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
-
 	static HWND GetWindowHandle() { return WindowHandle; };
 
 	static LONG width;

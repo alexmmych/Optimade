@@ -246,19 +246,3 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	return DefWindowProcW(hwind, msg, wparam, lparam);
 }
 
-LRESULT CALLBACK Window::SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
-{
-
-	switch (message) {
-
-	case WM_GETDLGCODE:
-		return DLGC_WANTALLKEYS;
-		break;
-
-	case WM_NCDESTROY:
-		RemoveWindowSubclass(hWnd, SubclassWindowProcedure, 1);
-		break;
-		
-	}
-	return DefSubclassProc(hWnd, message, wParam, lParam);
-}
