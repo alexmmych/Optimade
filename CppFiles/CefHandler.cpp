@@ -15,15 +15,25 @@ CefHandler* CefHandler::GetInstance() {
 
 void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	//Sets host object for the parent window.
-	host = browser->GetHost();
+	m_browser = browser.get();
 	
-	SetWindowPos(host->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
+	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 
 	//Sets browser window handle as a child.
-	HWND browserWindow = GetWindow(host->GetWindowHandle(), GW_CHILD);
+	HWND browserWindow = GetWindow(m_browser->GetHost()->GetWindowHandle(), GW_CHILD);
 
 	//This function subclasses the browser window, allowing to use a WndProc instead of CEF default.
 	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 1, 0);
+}
+
+bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
+	DestroyWindow(browser->GetHost()->GetWindowHandle());
+	cef_instance = nullptr;
+	return true;
+}
+
+void CefHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
+	m_browser = NULL;
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
@@ -55,7 +65,6 @@ CefHandler::~CefHandler() {
 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
-	CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
 
 	switch (message) {
 
@@ -64,8 +73,7 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		switch (wParam)
 		{
 		case VK_ESCAPE:
-			handle->host->CloseBrowser(false);
-			PostQuitMessage(0);
+			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
 		}
 	}

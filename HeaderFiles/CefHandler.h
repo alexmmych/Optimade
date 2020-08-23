@@ -18,6 +18,8 @@ public:
 
 	//CefLifeSpandHandler method:
 	virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) OVERRIDE;
+	virtual bool DoClose(CefRefPtr<CefBrowser> browser) OVERRIDE;
+	virtual void OnBeforeClose(CefRefPtr<CefBrowser> browser) OVERRIDE;
 
 
 	//CefRenderHandler methods:
@@ -32,7 +34,7 @@ public:
 
 	static CefHandler* GetInstance();
 
-	CefRefPtr<CefBrowserHost> host;
+	CefRefPtr<CefBrowser> m_browser;
 
 private:
 

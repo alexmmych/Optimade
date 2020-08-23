@@ -213,11 +213,16 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
 
-		handle->host->WasResized();
+		if (handle.get() == nullptr) {
+			PostQuitMessage(0);
+			return 0;
+		}
+
+		handle->m_browser->GetHost()->WasResized();
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
-		SetWindowPos(handle->host->GetWindowHandle(), HWND_TOP, 0, 35, width, height, SWP_SHOWWINDOW);
+		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 35, width, height, SWP_SHOWWINDOW);
 
 	
 		break;
