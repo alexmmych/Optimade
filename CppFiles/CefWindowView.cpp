@@ -18,7 +18,6 @@ void WindowView::OnContextInitialized() {
 	CefWindowInfo window_info;
 
 //Creates the window.
-	Window::Instance();
 
 	RECT rcClient;
 	HWND WindowHandle = Window::GetWindowHandle();
@@ -27,12 +26,9 @@ void WindowView::OnContextInitialized() {
 
 	window_info.SetAsChild(WindowHandle, rcClient);
 
-
 	// Create the first browser window.
 	CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
 		nullptr, nullptr);
-
-	MessageLoop();
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {

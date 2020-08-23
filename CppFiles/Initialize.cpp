@@ -38,23 +38,23 @@ int WINAPI WinMain(
 
     void* sandbox_info = nullptr;
 
-    CefSettings settings;
-
-    settings.no_sandbox = true;
-    settings.multi_threaded_message_loop = false;
-
-
     int exit_code = CefExecuteProcess(main_args, app.get(), sandbox_info);
     if (exit_code >= 0) {
         // The sub-process terminated, exit now.
         return exit_code;
-    } 
+    }
+
+    CefSettings settings;
+
+    settings.no_sandbox = true;
+    settings.multi_threaded_message_loop = true;
+
+
+    Window::Instance();
 
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 
-    // Shut down CEF.
-
-    CefQuitMessageLoop();
+    MessageLoop();
 
     CefShutdown();
 

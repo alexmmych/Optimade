@@ -55,6 +55,7 @@ CefHandler::~CefHandler() {
 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
+	CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
 
 	switch (message) {
 
@@ -63,7 +64,7 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		switch (wParam)
 		{
 		case VK_ESCAPE:
-			//MessageBox(hWnd,"hi","hi",MB_OK|MB_ICONEXCLAMATION);
+			handle->host->CloseBrowser(false);
 			PostQuitMessage(0);
 			break;
 		}
