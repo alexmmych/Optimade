@@ -11,7 +11,6 @@ void MessageLoop()
 {
     BOOL boolean;
     MSG msg = { 0 };
-    POINT p;
 
     while (msg.message != WM_QUIT)
     {

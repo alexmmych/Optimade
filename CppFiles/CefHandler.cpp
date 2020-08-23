@@ -24,6 +24,8 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 
 	//This function subclasses the browser window, allowing to use a WndProc instead of CEF default.
 	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 1, 0);
+
+	SetTimer(Window::GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
 }
 
 bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {

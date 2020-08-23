@@ -207,6 +207,17 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		break;
 	}
+	case WM_TIMER: {
+		switch (wparam) {
+		case ID_TIMER: {
+			if (handle.get() == nullptr) {
+				PostQuitMessage(0);
+				return 0;
+			}
+			break;
+		}
+		}
+	}
 	case WM_SIZING: {
 		GetWindowRect(hwind, &rcClient);
 

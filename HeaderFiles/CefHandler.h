@@ -1,5 +1,7 @@
 #pragma once
 
+#define ID_TIMER 1
+
 #include "C:/cef/include/cef_client.h"
 #include "../HeaderFiles/Window.h"
 
