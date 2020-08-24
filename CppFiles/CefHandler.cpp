@@ -20,10 +20,7 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 
 	//Sets browser window handle as a child.
-	HWND browserWindow = GetWindow(m_browser->GetHost()->GetWindowHandle(), GW_CHILD);
-
-	//This function subclasses the browser window, allowing to use a WndProc instead of CEF default.
-	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 1, 0);
+	browserWindow = GetWindow(m_browser->GetHost()->GetWindowHandle(), GW_CHILD);
 
 	SetTimer(Window::GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
 }
@@ -58,6 +55,12 @@ void CefHandler::OnPaint(
 	browser->GetHost()->Invalidate(type);
 }
 
+void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) {
+	//Removes and sets the subclass, updating it, upon loading another website.
+
+	RemoveWindowSubclass(browserWindow, &SubclassWindowProcedure, 1);
+	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 1, 0);
+}
 
 
 CefHandler::~CefHandler() {

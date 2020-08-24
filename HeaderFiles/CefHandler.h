@@ -5,7 +5,7 @@
 #include "C:/cef/include/cef_client.h"
 #include "../HeaderFiles/Window.h"
 
-class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler {
+class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler, public CefLoadHandler {
 public:
 	CefHandler();
 	~CefHandler();
@@ -17,6 +17,13 @@ public:
 	virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() OVERRIDE {
 		return this;
 	}
+
+	virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE {
+		return this;
+	}
+
+	//CefLoadHandler method:
+	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) OVERRIDE;
 
 	//CefLifeSpandHandler method:
 	virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) OVERRIDE;
@@ -37,6 +44,7 @@ public:
 	static CefHandler* GetInstance();
 
 	CefRefPtr<CefBrowser> m_browser;
+	HWND browserWindow;
 
 private:
 
