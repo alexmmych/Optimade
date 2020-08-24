@@ -29,6 +29,8 @@ Window::Window()
 
 	ShowAWindow();
 
+	SetLayeredWindowAttributes(WindowHandle, 0, RGB(255,0,255), LWA_ALPHA);
+
 }
 
 void Window::CreateWindowClass()
@@ -54,7 +56,7 @@ void Window::CreateWindowClass()
 void Window::CreateAWindow()
 {
 
-	AdjustWindowRect(&windowRect, WS_EX_OVERLAPPEDWINDOW, FALSE);
+	AdjustWindowRect(&windowRect, WS_EX_LAYERED, FALSE);
 
 	WindowHandle = CreateWindowExW
 	(
@@ -64,7 +66,7 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_THICKFRAME, 
+		WS_POPUP, 
 
 		CW_USEDEFAULT, //X location of window
 

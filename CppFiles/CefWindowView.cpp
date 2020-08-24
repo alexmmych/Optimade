@@ -13,7 +13,7 @@ void WindowView::OnContextInitialized() {
 
 	std::string url;
 
-	url = "https://google.com";
+	url = "C:/Optimade/Resources/Website.html";
 
 	CefWindowInfo window_info;
 
