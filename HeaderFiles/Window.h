@@ -40,6 +40,7 @@ private:
 public:
 
 	HWND GetWindowHandle() { return WindowHandle; };
+	HINSTANCE GetHandleInstance() { return HandleInstance; };
 
 	static LONG width;
 	static LONG height;

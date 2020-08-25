@@ -2,7 +2,7 @@
 #include "../HeaderFiles/Hook.h"
 #include "../HeaderFiles/Window.h"
 
-
+Hook* Hook::HookInstance = nullptr;
 
 Hook::Hook() {
 	SetHook();
@@ -23,11 +23,13 @@ void Hook::UnSetHook() {
 
 
 LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
+	MSLLHOOKSTRUCT* pMouseStruct = (MSLLHOOKSTRUCT*)lParam;
+
 	if (nCode == 0) {
 
 		switch (wParam) {
 		case WM_MOUSEMOVE: {
-
+			std::cout << "Mouse position is: x = " << pMouseStruct->pt.x << " | y = " << pMouseStruct->pt.y <<std::endl;
 		}
 
 		}

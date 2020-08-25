@@ -8,6 +8,7 @@
 #include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/Console.h"
 #include "../HeaderFiles/CefWindowView.h"
+#include "../HeaderFiles/Hook.h"
 
 
 
@@ -49,7 +50,11 @@ int WINAPI WinMain(
     settings.no_sandbox = true;
     settings.multi_threaded_message_loop = true;
 
+    CreateConsole();
+
     Window::GetInstance();
+
+    Hook::GetInstance();
 
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 

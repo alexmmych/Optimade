@@ -4,12 +4,12 @@
 
 class Hook {
 private:
+	static Hook* HookInstance;
+
 	Hook();
 	~Hook();
 
 	HHOOK MouseHook;
-
-	static Hook* HookInstance;
 
 	void SetHook();
 	void UnSetHook();
