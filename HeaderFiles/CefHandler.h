@@ -53,10 +53,12 @@ public:
 	CefRefPtr<CefBrowser> m_browser;
 	HWND browserWindow;
 
+	WNDPROC SubclassWndProc;
+
 private:
 
 	IMPLEMENT_REFCOUNTING(CefHandler);
 };
 
 //The window procedure callback of the browser window. 
-LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
+LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
