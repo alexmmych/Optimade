@@ -49,7 +49,7 @@ int WINAPI WinMain(
     settings.no_sandbox = true;
     settings.multi_threaded_message_loop = true;
 
-    Window::Instance();
+    Window::GetInstance();
 
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 

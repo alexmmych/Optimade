@@ -44,7 +44,7 @@ public:
 	static LONG width;
 	static LONG height;
 
-	static Window* Instance() {
+	static Window* GetInstance() {
 		if (!ptrInstance) {
 			ptrInstance = new Window();
 		}

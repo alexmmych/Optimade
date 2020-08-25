@@ -22,7 +22,7 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	
 	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, Window::width+1, Window::height, SWP_SHOWWINDOW);
 
-	SetTimer(Window::Instance()->GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
+	SetTimer(Window::GetInstance()->GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
 }
 
 bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
