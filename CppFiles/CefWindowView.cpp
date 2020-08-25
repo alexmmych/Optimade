@@ -20,7 +20,7 @@ void WindowView::OnContextInitialized() {
 //Creates the window.
 
 	RECT rcClient;
-	HWND WindowHandle = Window::GetWindowHandle();
+	HWND WindowHandle = Window::Instance()->GetWindowHandle();
 
 	GetWindowRect(WindowHandle, &rcClient);
 

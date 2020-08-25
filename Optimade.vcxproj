@@ -119,6 +119,7 @@
     <ClCompile Include="CppFiles\CefHandler.cpp" />
     <ClCompile Include="CppFiles\CefWindowView.cpp" />
     <ClCompile Include="cppfiles\ConsoleDefinition.cpp" />
+    <ClCompile Include="CppFiles\Hook.cpp" />
     <ClCompile Include="cppfiles\Loop.cpp" />
     <ClCompile Include="cppfiles\Initialize.cpp" />
     <ClCompile Include="cppfiles\Window.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="HeaderFiles\CefHandler.h" />
     <ClInclude Include="HeaderFiles\CefWindowView.h" />
     <ClInclude Include="headerfiles\Console.h" />
+    <ClInclude Include="HeaderFiles\Hook.h" />
     <ClInclude Include="headerfiles\Loop.h" />
     <ClInclude Include="headerfiles\pch.h" />
     <ClInclude Include="HeaderFiles\Window.h" />

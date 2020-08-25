@@ -11,7 +11,6 @@
 
 LONG Window::width = 1000;
 LONG Window::height = 1000;
-HWND Window::WindowHandle = nullptr;
 Window* Window::ptrInstance = nullptr;
 
 
@@ -28,8 +27,6 @@ Window::Window()
 	std::cout << "Status: Window class created.\n";
 
 	ShowAWindow();
-
-	SetLayeredWindowAttributes(WindowHandle, 0, RGB(255,0,255), LWA_ALPHA);
 
 }
 
@@ -66,7 +63,7 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_POPUP, 
+		WS_THICKFRAME, 
 
 		CW_USEDEFAULT, //X location of window
 
@@ -235,7 +232,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
-		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 35, width, height, SWP_SHOWWINDOW);
+		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
 
 	
 		break;
@@ -263,4 +260,3 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	return DefWindowProcW(hwind, msg, wparam, lparam);
 }
-

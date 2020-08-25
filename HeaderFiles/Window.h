@@ -19,7 +19,7 @@ private:
 	const LPCWSTR WindowClass = L"WindClass1";
 	const LPCWSTR WindowName = L"Optimade";
 
-	static HWND WindowHandle;
+	HWND WindowHandle;
 
 	RECT windowRect;
 
@@ -39,19 +39,18 @@ private:
 
 public:
 
-	static HWND GetWindowHandle() { return WindowHandle; };
+	HWND GetWindowHandle() { return WindowHandle; };
 
 	static LONG width;
 	static LONG height;
 
-	static Window& Instance() {
+	static Window* Instance() {
 		if (!ptrInstance) {
 			ptrInstance = new Window();
 		}
-		return *ptrInstance;
+		return ptrInstance;
 	}
 
 };
-
 
 //Note: Surprisingly good commenting on my part for one of my first actual projects.

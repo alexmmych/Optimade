@@ -16,13 +16,13 @@ CefHandler* CefHandler::GetInstance() {
 void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	//Sets host object for the parent window.
 	m_browser = browser.get();
-	
-	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 35, Window::width, Window::height, SWP_SHOWWINDOW);
 
 	//Sets browser window handle as a child.
 	browserWindow = GetWindow(m_browser->GetHost()->GetWindowHandle(), GW_CHILD);
+	
+	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, Window::width+1, Window::height, SWP_SHOWWINDOW);
 
-	SetTimer(Window::GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
+	SetTimer(Window::Instance()->GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
 }
 
 bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
@@ -57,9 +57,8 @@ void CefHandler::OnPaint(
 
 void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) {
 	//Removes and sets the subclass, updating it, upon loading another website.
-
-	RemoveWindowSubclass(browserWindow, &SubclassWindowProcedure, 1);
-	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 1, 0);
+	RemoveWindowSubclass(browserWindow, &SubclassWindowProcedure, 0);
+	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 0, 0);
 }
 
 bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) {
@@ -86,11 +85,9 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			break;
 		}
 	}
-
 	case WM_NCDESTROY:
-		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 1);
+		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 0);
 		break;
-
 	}
 	return DefSubclassProc(hWnd, message, wParam, lParam);
 }
