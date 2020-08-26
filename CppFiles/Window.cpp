@@ -63,11 +63,11 @@ void Window::CreateAWindow()
 
 		WindowName,
 
-		WS_THICKFRAME, 
+		WS_POPUP, 
 
-		CW_USEDEFAULT, //X location of window
+		250, //X location of window
 
-		0, //Y location of window (it's 0 because "CW_USEDEFAULT" on the "X" parameter overwrites it).
+		50, //Y location of window (it's 0 because "CW_USEDEFAULT" on the "X" parameter overwrites it).
 
 		windowRect.right - windowRect.left, //Width parameter of window.
 
@@ -128,8 +128,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		SetWindowPos(hwind,
 			NULL,
 			rcClient.left, rcClient.top,
-			rcClient.right - rcClient.left,
-			rcClient.bottom - rcClient.top,
+			(rcClient.right - rcClient.left) - 100,
+			(rcClient.bottom - rcClient.top) - 100,
 			SWP_FRAMECHANGED);
 
 		break;
@@ -149,10 +149,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			// Calculate new NCCALCSIZE_PARAMS based on custom NCA inset.
 			NCCALCSIZE_PARAMS* pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
 
-			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 0;
-			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 0;
+			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 5;
+			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 5;
 			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 5;
-			pncsp->rgrc[0].bottom = pncsp->rgrc[0].bottom - 0;
+			pncsp->rgrc[0].bottom = pncsp->rgrc[0].bottom - 5;
 
 			return 0;
 		}

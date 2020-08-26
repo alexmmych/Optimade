@@ -60,7 +60,7 @@ void CefHandler::OnPaint(
 
 void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) {
 	//Removes and sets the subclass, updating it, upon loading another website.
-	SubclassWndProc = (WNDPROC)SetWindowLongPtr(browserWindow, GWLP_WNDPROC, (LONG_PTR)SubclassWindowProcedure);
+	SubclassWndProc = (WNDPROC)SetWindowLongPtrW(browserWindow, GWLP_WNDPROC, (LONG_PTR)SubclassWindowProcedure);
 }
 
 bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) {
@@ -87,11 +87,6 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			break;
 		}
 	}
-	case WM_NCHITTEST: {
-		std::cout << "Hello";
-		return HTCAPTION;
-		break;
 	}
-	}
-	return CallWindowProc(cp_SubclassWndProc, hWnd, message, wParam, lParam);
+	return CallWindowProcW(cp_SubclassWndProc, hWnd, message, wParam, lParam);
 }
