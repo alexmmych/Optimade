@@ -57,7 +57,7 @@ void Window::CreateAWindow()
 
 	WindowHandle = CreateWindowExW
 	(
-		0, //To do: Allow user to make a fullscreen with "WS_POPUP"
+		WS_EX_TRANSPARENT,
 
 		WindowClass,
 
@@ -90,6 +90,8 @@ void Window::ShowAWindow()
 {
 	ShowWindow(WindowHandle, SW_SHOWDEFAULT);  //Re-do this, maybe it causes the problem.
 	std::cout << "Status: Window created successfully\n";
+	SetWindowPos(WindowHandle, HWND_TOPMOST, 0, 0, 100, 100, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, HWND_TOPMOST, 100, 50, width, height, SWP_SHOWWINDOW);
 }
 
 Window::~Window()
@@ -126,19 +128,16 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_CREATE: {
 		// Inform the application of the frame change.
 		SetWindowPos(hwind,
-			NULL,
+			HWND_TOP,
 			rcClient.left, rcClient.top,
 			(rcClient.right - rcClient.left) - 100,
 			(rcClient.bottom - rcClient.top) - 100,
 			SWP_FRAMECHANGED);
-
 		break;
 	}
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
-
-		InvalidateRect(hwind, &rcClient, true);
 
 		EndPaint(hwind, &ps);
 
