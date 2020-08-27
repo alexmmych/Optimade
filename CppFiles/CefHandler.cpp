@@ -28,7 +28,7 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 
 	DestroyWindow(browser->GetHost()->GetWindowHandle());
-	SetWindowLongPtr(CefHandler::GetInstance()->browserWindow, GWLP_WNDPROC, (LONG_PTR)SubclassWindowProcedure);
+	RemoveWindowSubclass(CefHandler::GetInstance()->browserWindow, &SubclassWindowProcedure, 0);
 
 	cef_instance = nullptr;
 	return true;
@@ -60,7 +60,8 @@ void CefHandler::OnPaint(
 
 void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) {
 	//Removes and sets the subclass, updating it, upon loading another website.
-	SubclassWndProc = (WNDPROC)SetWindowLongPtrW(browserWindow, GWLP_WNDPROC, (LONG_PTR)SubclassWindowProcedure);
+	RemoveWindowSubclass(browserWindow, &SubclassWindowProcedure, 0);
+	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 0, 0);
 }
 
 bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) {
@@ -73,9 +74,8 @@ CefHandler::~CefHandler() {
 }
 
 
-LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
-	WNDPROC cp_SubclassWndProc = CefHandler::GetInstance()->SubclassWndProc;
 	switch (message) {
 
 	case WM_KEYDOWN:
@@ -87,6 +87,9 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			break;
 		}
 	}
+	case WM_NCDESTROY:
+		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 0);
+		break;
 	}
-	return CallWindowProcW(cp_SubclassWndProc, hWnd, message, wParam, lParam);
+	return DefSubclassProc(hWnd, message, wParam, lParam);
 }
