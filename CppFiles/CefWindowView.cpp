@@ -13,8 +13,8 @@ void WindowView::OnContextInitialized() {
 
 	std::string url;
 
-//	url = "C:/Optimade/Resources/Draggable.html";
-    url = "https://www.google.com";
+	url = "C:/Optimade/Resources/Website.html";
+//	url = "https://www.google.com";
 
 	CefWindowInfo window_info;
 
@@ -30,6 +30,7 @@ void WindowView::OnContextInitialized() {
 	// Create the first browser window.
 	CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
 		nullptr, nullptr);
+
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {

@@ -90,8 +90,8 @@ void Window::ShowAWindow()
 {
 	ShowWindow(WindowHandle, SW_SHOWDEFAULT);  //Re-do this, maybe it causes the problem.
 	std::cout << "Status: Window created successfully\n";
-	SetWindowPos(WindowHandle, HWND_TOPMOST, 0, 0, 100, 100, SWP_SHOWWINDOW);
-	SetWindowPos(WindowHandle, HWND_TOPMOST, 100, 50, width, height, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, HWND_TOP, 0, 0, 100, 100, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, HWND_TOP, 100, 50, width, height, SWP_SHOWWINDOW);
 }
 
 Window::~Window()
@@ -128,7 +128,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_CREATE: {
 		// Inform the application of the frame change.
 		SetWindowPos(hwind,
-			HWND_TOP,
+			NULL,
 			rcClient.left, rcClient.top,
 			(rcClient.right - rcClient.left) - 100,
 			(rcClient.bottom - rcClient.top) - 100,
@@ -156,7 +156,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return 0;
 		}
 		break;
-	}			  //When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
+	}
+	//When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
 	case WM_NCHITTEST: {
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
@@ -203,6 +204,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return HTRIGHT;
 		}
 
+		break;
+	}
+	case WM_NCLBUTTONDOWN: {
+		std::cout << "HELLO :) \n \n";
 		break;
 	}
 	case WM_TIMER: {

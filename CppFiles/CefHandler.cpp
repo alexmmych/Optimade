@@ -31,6 +31,7 @@ bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 	RemoveWindowSubclass(CefHandler::GetInstance()->browserWindow, &SubclassWindowProcedure, 0);
 
 	cef_instance = nullptr;
+	DeleteObject(draggable_region);
 	return true;
 }
 
@@ -64,6 +65,22 @@ void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> 
 	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 0, 0);
 }
 
+void CefHandler::OnDraggableRegionsChanged(
+	CefRefPtr<CefBrowser> browser,
+	CefRefPtr<CefFrame> frame,
+	const std::vector<CefDraggableRegion>& regions) {
+
+	SetRectRgn(draggable_region, 0, 0, 0, 0);
+
+	for (std::vector<CefDraggableRegion>::const_iterator it = regions.begin(); it != regions.end(); ++it) {
+		HRGN region = CreateRectRgn(it->bounds.x, it->bounds.y,
+			it->bounds.x + it->bounds.width,
+			it->bounds.y + it->bounds.height);
+		CombineRgn(draggable_region, draggable_region, region, it->draggable ? RGN_OR : RGN_DIFF);
+		DeleteObject(region);
+	}
+}
+
 bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) {
 	return false;
 }
@@ -86,10 +103,10 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
 		}
-	}
 	case WM_NCDESTROY:
 		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 0);
 		break;
+	}
 	}
 	return DefSubclassProc(hWnd, message, wParam, lParam);
 }
