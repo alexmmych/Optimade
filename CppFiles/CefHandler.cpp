@@ -94,7 +94,11 @@ CefHandler::~CefHandler() {
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	switch (message) {
-
+	case WM_PARENTNOTIFY: {
+		if (LOWORD(wParam) == WM_LBUTTONDOWN) {
+			std::cout << "Got click" << std::endl;
+		}
+		break;
 	case WM_KEYDOWN:
 	{
 		switch (wParam)
@@ -103,9 +107,12 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
 		}
+	}
 	case WM_NCDESTROY:
 		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 0);
 		break;
+	default: 
+		return DefSubclassProc(hWnd, message, wParam, lParam);
 	}
 	}
 	return DefSubclassProc(hWnd, message, wParam, lParam);

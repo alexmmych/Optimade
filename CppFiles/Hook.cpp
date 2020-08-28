@@ -34,7 +34,7 @@ LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
 		}
 		case WM_LBUTTONDOWN: {
 			std::cout << "CLICKED!" << std::endl;
-			SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(pMouseStruct->pt.x , pMouseStruct->pt.y));
+			SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_NCHITTEST, NULL, MAKELPARAM(pMouseStruct->pt.x , pMouseStruct->pt.y));
 			break;
 		}
 		}
