@@ -135,12 +135,27 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			SWP_FRAMECHANGED);
 		break;
 	}
+	case WM_PARENTNOTIFY: {
+		switch (wparam) {
+		case WM_LBUTTONDOWN: {
+			GetCursorPos(&mouse);
+			ScreenToClient(hwind, &mouse);
+			std::cout << "Got click" << std::endl;
+			SendMessageW(hwind, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(mouse.x, mouse.y));
+			break;
+		}
+		}
+	}
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 
 		EndPaint(hwind, &ps);
 
+		break;
+	}
+	case WM_NCLBUTTONDOWN: {
+		std::cout << "Non-client click" << std::endl;
 		break;
 	}
 	case WM_NCCALCSIZE: {
@@ -161,6 +176,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_NCHITTEST: {
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
+
+		return HTCAPTION;
 
 		//Top part of the window
 		if (mouse.y <= 50) {
