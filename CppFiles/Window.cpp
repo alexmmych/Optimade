@@ -138,10 +138,20 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_PARENTNOTIFY: {
 		switch (wparam) {
 		case WM_LBUTTONDOWN: {
+
+			AllowSetForegroundWindow(ASFW_ANY);
+			SetForegroundWindow(hwind);
+
+			SetActiveWindow(hwind);
+
+			SetCapture(hwind);
+
 			GetCursorPos(&mouse);
 			ScreenToClient(hwind, &mouse);
+
 			std::cout << "Got click" << std::endl;
-			SendMessageW(hwind, WM_NCLBUTTONDOWN, HTCAPTION, MAKELPARAM(mouse.x, mouse.y));
+
+			SendMessageW(hwind, WM_LBUTTONDOWN, NULL, MAKELPARAM(mouse.x, mouse.y));
 			break;
 		}
 		}
