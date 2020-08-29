@@ -116,6 +116,10 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		switch (wParam)
 		{
 		case VK_ESCAPE:
+			//Set Focus to avoid nullptrs and crashes
+			SetFocus(hWnd);
+
+			//Calls functions to close CEF
 			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
 		}
