@@ -139,19 +139,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		switch (wparam) {
 		case WM_LBUTTONDOWN: {
 
-			AllowSetForegroundWindow(ASFW_ANY);
-			SetForegroundWindow(hwind);
-
-			SetActiveWindow(hwind);
-
-			SetCapture(hwind);
-
-			GetCursorPos(&mouse);
-			ScreenToClient(hwind, &mouse);
-
 			std::cout << "Got click" << std::endl;
-
-			SendMessageW(hwind, WM_LBUTTONDOWN, NULL, MAKELPARAM(mouse.x, mouse.y));
 			break;
 		}
 		}
@@ -186,8 +174,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_NCHITTEST: {
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
-
-		return HTCAPTION;
 
 		//Top part of the window
 		if (mouse.y <= 50) {

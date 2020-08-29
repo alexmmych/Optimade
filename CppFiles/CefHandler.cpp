@@ -97,8 +97,6 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 	switch (message) {
 	case WM_PARENTNOTIFY: {
 		if (LOWORD(wParam) == WM_LBUTTONDOWN) {
-			GetCursorPos(&mouse);
-			ScreenToClient(hWnd, &mouse);
 			std::cout << "Sent click" << std::endl;
 		}
 		break;
@@ -110,6 +108,16 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
 		}
+	}
+	case WM_MOUSEMOVE: {
+		GetCursorPos(&mouse);
+		std::cout << "Mouse moved" << std::endl;
+
+	
+		MoveWindow(Window::GetInstance()->GetWindowHandle(), mouse.x, mouse.y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+		
+
+		break;
 	}
 	case WM_NCDESTROY:
 		RemoveWindowSubclass(hWnd, &SubclassWindowProcedure, 0);
