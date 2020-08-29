@@ -62,3 +62,6 @@ private:
 
 //The window procedure callback of the browser window. 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData);
+
+static int lastX;
+static int lastY;

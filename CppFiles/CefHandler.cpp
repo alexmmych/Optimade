@@ -82,6 +82,15 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 	case WM_PARENTNOTIFY: {
 		switch (wParam) {
 		case WM_LBUTTONDOWN: {
+
+			GetCursorPos(&mouse);
+			RECT rect;
+
+			GetWindowRect(hWnd, &rect);
+
+			lastX = mouse.x - rect.left;
+			lastY = mouse.y - rect.top;
+
 			std::cout << "Sent click" << std::endl;
 			break;
 		}
@@ -89,11 +98,16 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		break;
 	}
 	case WM_MOUSEMOVE: {
-		GetCursorPos(&mouse);
-		std::cout << "Mouse moved" << std::endl;
+		POINT currentMouse;
+		GetCursorPos(&currentMouse);
+
+		int x = currentMouse.x - lastX;
+		int y = currentMouse.y - lastY;
 
 		//Moves the window handle to the current position of the mouse.
-		MoveWindow(Window::GetInstance()->GetWindowHandle(), mouse.x, mouse.y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+		MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+
+		std::cout << "Mouse moved" << std::endl;
 
 		break;
 	}
