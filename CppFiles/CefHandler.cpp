@@ -30,6 +30,7 @@ bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 	DestroyWindow(browser->GetHost()->GetWindowHandle());
 	RemoveWindowSubclass(CefHandler::GetInstance()->browserWindow, &SubclassWindowProcedure, 0);
 
+	DeleteObject(draggable_region);
 	cef_instance = nullptr;
 	return true;
 }
@@ -68,6 +69,20 @@ bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragDat
 	return false;
 }
 
+void CefHandler::OnDraggableRegionsChanged(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const std::vector<CefDraggableRegion>& regions) {
+
+	// Determine new draggable region.
+	for (std::vector<CefDraggableRegion>::const_iterator it = regions.begin(); it != regions.end(); ++it) {
+
+		if (it->draggable) { draggable_region = CreateRectRgn(
+				it->bounds.x, it->bounds.y,
+				it->bounds.x + it->bounds.width,
+				it->bounds.y + it->bounds.height);;
+		}
+
+	}
+}
+
 
 CefHandler::~CefHandler() {
 	cef_instance = nullptr;
@@ -82,16 +97,16 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 	case WM_PARENTNOTIFY: {
 		switch (wParam) {
 		case WM_LBUTTONDOWN: {
-
 			GetCursorPos(&mouse);
-			RECT rect;
 
+			RECT rect;
 			GetWindowRect(hWnd, &rect);
 
 			lastX = mouse.x - rect.left;
 			lastY = mouse.y - rect.top;
 
 			std::cout << "Sent click" << std::endl;
+
 			break;
 		}
 		}
@@ -110,6 +125,7 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		std::cout << "Mouse moved" << std::endl;
 
 		break;
+
 	}
 	case WM_KEYDOWN:
 	{
