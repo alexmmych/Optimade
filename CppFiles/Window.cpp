@@ -89,7 +89,9 @@ void Window::ShowAWindow()
 	ShowWindow(WindowHandle, SW_SHOWDEFAULT);  //Re-do this, maybe it causes the problem.
 	std::cout << "Status: Window created successfully\n";
 
+
 	//Changes the window to be really small and then scales it back to its original size in order to get rid of the hanging edges.
+
 	SetWindowPos(WindowHandle, HWND_TOP, 0, 0, 100, 100, SWP_SHOWWINDOW);
 	SetWindowPos(WindowHandle, HWND_TOP, 100, 50, width, height, SWP_SHOWWINDOW);
 }
@@ -128,12 +130,21 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_CREATE: {
 		// Inform the application of the frame change.
 		SetWindowPos(hwind,
-			HWND_TOP,
+			NULL,
 			rcClient.left, rcClient.top,
 			(rcClient.right - rcClient.left),
 			(rcClient.bottom - rcClient.top),
 			SWP_FRAMECHANGED);
 		break;
+	}
+	case WM_PARENTNOTIFY: {
+		switch (wparam) {
+		case WM_LBUTTONDOWN: {
+
+			std::cout << "Got click" << std::endl;
+			break;
+		}
+		}
 	}
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
@@ -141,6 +152,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		EndPaint(hwind, &ps);
 
+		break;
+	}
+	case WM_NCLBUTTONDOWN: {
+		std::cout << "Non-client click" << std::endl;
 		break;
 	}
 	case WM_NCCALCSIZE: {
@@ -236,7 +251,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
-		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
+		SetWindowPos(handle->browserWindow, HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
 
 	
 		break;

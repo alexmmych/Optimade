@@ -30,6 +30,7 @@ void WindowView::OnContextInitialized() {
 	// Create the first browser window.
 	CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
 		nullptr, nullptr);
+
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
