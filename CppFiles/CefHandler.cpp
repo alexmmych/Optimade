@@ -76,8 +76,27 @@ CefHandler::~CefHandler() {
 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
+	POINT mouse;
 	switch (message) {
+	//WM_PARENTNOTIFY allows us to see WM_LBUTTONDOWN which we weren't able to do before.
+	case WM_PARENTNOTIFY: {
+		switch (wParam) {
+		case WM_LBUTTONDOWN: {
+			std::cout << "Sent click" << std::endl;
+			break;
+		}
+		}
+		break;
+	}
+	case WM_MOUSEMOVE: {
+		GetCursorPos(&mouse);
+		std::cout << "Mouse moved" << std::endl;
 
+		//Moves the window handle to the current position of the mouse.
+		MoveWindow(Window::GetInstance()->GetWindowHandle(), mouse.x, mouse.y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+
+		break;
+	}
 	case WM_KEYDOWN:
 	{
 		switch (wParam)

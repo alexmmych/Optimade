@@ -67,13 +67,11 @@ void Window::CreateAWindow()
 
 		250, //X location of window
 
-		50, //Y location of window (it's 0 because "CW_USEDEFAULT" on the "X" parameter overwrites it).
+		50, //Y location of window.
 
 		windowRect.right - windowRect.left, //Width parameter of window.
 
-		windowRect.bottom - windowRect.top, //Height parameter of window (it's 0 because "CW_USEDEFAULT" on the "Width" parameter overwrites it)
-
-		//To do: Create an option to change width and height of the window.     Ex: 1920x1080.
+		windowRect.bottom - windowRect.top, //Height parameter of window.
 
 		NULL, //Window Parent parameter.
 
@@ -90,8 +88,10 @@ void Window::ShowAWindow()
 {
 	ShowWindow(WindowHandle, SW_SHOWDEFAULT);  //Re-do this, maybe it causes the problem.
 	std::cout << "Status: Window created successfully\n";
-	SetWindowPos(WindowHandle, HWND_TOPMOST, 0, 0, 100, 100, SWP_SHOWWINDOW);
-	SetWindowPos(WindowHandle, HWND_TOPMOST, 100, 50, width, height, SWP_SHOWWINDOW);
+
+	//Changes the window to be really small and then scales it back to its original size in order to get rid of the hanging edges.
+	SetWindowPos(WindowHandle, HWND_TOP, 0, 0, 100, 100, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, HWND_TOP, 100, 50, width, height, SWP_SHOWWINDOW);
 }
 
 Window::~Window()
@@ -130,8 +130,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		SetWindowPos(hwind,
 			HWND_TOP,
 			rcClient.left, rcClient.top,
-			(rcClient.right - rcClient.left) - 100,
-			(rcClient.bottom - rcClient.top) - 100,
+			(rcClient.right - rcClient.left),
+			(rcClient.bottom - rcClient.top),
 			SWP_FRAMECHANGED);
 		break;
 	}
@@ -148,6 +148,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			// Calculate new NCCALCSIZE_PARAMS based on custom NCA inset.
 			NCCALCSIZE_PARAMS* pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
 
+			//The +/- 5 allows us to create a small border around CEF in which WM_NCHITTEST messages go through.
+
 			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 5;
 			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 5;
 			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 5;
@@ -156,7 +158,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return 0;
 		}
 		break;
-	}			  //When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
+	}
+	//When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
 	case WM_NCHITTEST: {
 		GetCursorPos(&mouse);
 		ScreenToClient(hwind, &mouse);
@@ -219,9 +222,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_SIZING: {
 		GetWindowRect(hwind, &rcClient);
 
+		//Resets width and height values
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
 
+		//Checks if CEF's handle is nullptr, in order to make sure that no calls to a nullptr instance are done.
 		if (handle.get() == nullptr) {
 			PostQuitMessage(0);
 			return 0;
@@ -240,15 +245,17 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PostQuitMessage(0);
 		break;
 	}
+	/*
 	case WM_KEYDOWN:
 	{
 		switch (wparam)
 		{
 		case VK_ESCAPE:
-			PostQuitMessage(0);
+			PostQuitMessage(0);		//It's no longer necessary to use WM_KEYDOWN since we don't have focus of the main window anymore. 
 			break;
 		}
 	}
+	*/
 
 	case WM_DESTROY:
 	{
