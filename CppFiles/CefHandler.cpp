@@ -30,7 +30,6 @@ bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 	DestroyWindow(browser->GetHost()->GetWindowHandle());
 	RemoveWindowSubclass(CefHandler::GetInstance()->browserWindow, &SubclassWindowProcedure, 0);
 
-	DeleteObject(draggable_region);
 	cef_instance = nullptr;
 	return true;
 }
@@ -69,19 +68,6 @@ bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragDat
 	return false;
 }
 
-void CefHandler::OnDraggableRegionsChanged(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const std::vector<CefDraggableRegion>& regions) {
-
-	// Determine new draggable region.
-	for (std::vector<CefDraggableRegion>::const_iterator it = regions.begin(); it != regions.end(); ++it) {
-
-		if (it->draggable) { draggable_region = CreateRectRgn(
-				it->bounds.x, it->bounds.y,
-				it->bounds.x + it->bounds.width,
-				it->bounds.y + it->bounds.height);;
-		}
-
-	}
-}
 
 
 CefHandler::~CefHandler() {
@@ -92,15 +78,18 @@ CefHandler::~CefHandler() {
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	POINT mouse;
+	HRGN draggable_region;
+
 	switch (message) {
 	//WM_PARENTNOTIFY allows us to see WM_LBUTTONDOWN which we weren't able to do before.
 	case WM_PARENTNOTIFY: {
 		switch (wParam) {
 		case WM_LBUTTONDOWN: {
-			GetCursorPos(&mouse);
-
 			RECT rect;
+
+			GetCursorPos(&mouse);
 			GetWindowRect(hWnd, &rect);
+
 
 			lastX = mouse.x - rect.left;
 			lastY = mouse.y - rect.top;
@@ -114,15 +103,17 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 	}
 	case WM_MOUSEMOVE: {
 		POINT currentMouse;
+		RECT region;
 		GetCursorPos(&currentMouse);
 
 		int x = currentMouse.x - lastX;
 		int y = currentMouse.y - lastY;
 
 		//Moves the window handle to the current position of the mouse.
-		MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
-
-		std::cout << "Mouse moved" << std::endl;
+		if (lastY <= 50) {
+			std::cout << "Window moved" << std::endl;
+			MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+		}
 
 		break;
 
