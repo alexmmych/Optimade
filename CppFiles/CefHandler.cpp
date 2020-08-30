@@ -39,7 +39,11 @@ void CefHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
+	RECT rectangle;
 
+	GetWindowRect(Window::GetInstance()->GetWindowHandle(), &rectangle);
+
+	rect = CefRect(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);
 }
 
 bool CefHandler::GetScreenInfo(CefRefPtr<CefBrowser> browser, CefScreenInfo& screen_info) {
@@ -55,7 +59,6 @@ void CefHandler::OnPaint(
 	const RectList& dirtyRects,
 	const void* buffer,
 	int width, int height) {
-	browser->GetHost()->Invalidate(type);
 }
 
 void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) {
@@ -111,7 +114,6 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 
 		//Moves the window handle to the current position of the mouse.
 		if (lastY <= 50) {
-			std::cout << "Window moved" << std::endl;
 			MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
 		}
 

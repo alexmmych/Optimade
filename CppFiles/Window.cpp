@@ -57,7 +57,7 @@ void Window::CreateAWindow()
 
 	WindowHandle = CreateWindowExW
 	(
-		WS_EX_TRANSPARENT,
+		WS_EX_LAYERED,
 
 		WindowClass,
 
@@ -82,6 +82,9 @@ void Window::CreateAWindow()
 		NULL //Window "LpParam" parameter, don't know how to use it so null (To do: figure out what it does and where to use it).
 	);
 
+	//Sets the main window to be black, creating the black edges.
+	SetLayeredWindowAttributes(WindowHandle, RGB(0, 0, 255), 0, LWA_COLORKEY);
+
 }
 
 void Window::ShowAWindow()
@@ -90,8 +93,8 @@ void Window::ShowAWindow()
 	std::cout << "Status: Window created successfully\n";
 
 	//Changes the window to be really small and then scales it back to its original size in order to get rid of the hanging edges.
-	SetWindowPos(WindowHandle, HWND_TOP, 0, 0, 100, 100, SWP_SHOWWINDOW);
-	SetWindowPos(WindowHandle, HWND_TOP, 100, 50, width, height, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, NULL, 0, 0, 100, 100, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, NULL, 100, 50, width, height, SWP_SHOWWINDOW);
 }
 
 Window::~Window()
@@ -138,6 +141,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
+
+		InvalidateRect(hwind, &rcClient, true);
 
 		EndPaint(hwind, &ps);
 
@@ -243,6 +248,16 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	case WM_CLOSE: {
 		PostQuitMessage(0);
+		break;
+	}
+	case WM_MOVE: {
+		std::cout << "Window moved" << std::endl;
+		GetCursorPos(&mouse);
+		if (handle.get() != nullptr) {
+			handle->m_browser->Reload();
+			SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
+			GetWindowRect(hwind, &rcClient);
+		}
 		break;
 	}
 	/*
