@@ -54,6 +54,8 @@ int WINAPI WinMain(
 
     Window::GetInstance();
 
+    CefEnableHighDPISupport();
+
     CefInitialize(main_args, settings, app.get(),sandbox_info);
 
     MessageLoop();

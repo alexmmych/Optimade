@@ -83,7 +83,7 @@ void Window::CreateAWindow()
 	);
 
 	//Sets the main window to be black, creating the black edges.
-	SetLayeredWindowAttributes(WindowHandle, RGB(0, 0, 255), 0, LWA_COLORKEY);
+	SetLayeredWindowAttributes(WindowHandle, RGB(0, 0, 0), 255, LWA_ALPHA);
 
 }
 
@@ -141,8 +141,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
-
-		InvalidateRect(hwind, &rcClient, true);
+		GetWindowRect(hwind, &rcClient);
 
 		EndPaint(hwind, &ps);
 
@@ -243,7 +242,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		//is highly noticeable.
 		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
 
-	
+
+		//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
+		SetWindowPos(hwind, NULL, rcClient.left + 5, rcClient.top + 5, width - 10, height - 10, SWP_FRAMECHANGED);
+		SetWindowPos(hwind, NULL, rcClient.left, rcClient.top, width, height, SWP_FRAMECHANGED);
+
 		break;
 	}
 	case WM_CLOSE: {
@@ -252,12 +255,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	case WM_MOVE: {
 		std::cout << "Window moved" << std::endl;
-		GetCursorPos(&mouse);
+
 		if (handle.get() != nullptr) {
 			handle->m_browser->Reload();
-			SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
-			GetWindowRect(hwind, &rcClient);
 		}
+
 		break;
 	}
 	/*
