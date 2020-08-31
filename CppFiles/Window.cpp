@@ -236,7 +236,9 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return 0;
 		}
 
-		handle->m_browser->GetHost()->WasResized();
+		SetWindowRgn(handle->m_browser->GetHost()->GetWindowHandle(), CreateRoundRectRgn(0, 0, width - 10, height - 10, 20, 20), TRUE);
+
+		handle->m_browser->Reload();
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
@@ -246,6 +248,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
 		SetWindowPos(hwind, NULL, rcClient.left + 5, rcClient.top + 5, width - 10, height - 10, SWP_FRAMECHANGED);
 		SetWindowPos(hwind, NULL, rcClient.left, rcClient.top, width, height, SWP_FRAMECHANGED);
+
+		handle->m_browser->GetHost()->WasResized();
 
 		break;
 	}
