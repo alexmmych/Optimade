@@ -39,11 +39,6 @@ void CefHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
-	RECT rectangle;
-
-	GetWindowRect(Window::GetInstance()->GetWindowHandle(), &rectangle);
-
-	rect = CefRect(rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);
 }
 
 bool CefHandler::GetScreenInfo(CefRefPtr<CefBrowser> browser, CefScreenInfo& screen_info) {

@@ -244,11 +244,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		//is highly noticeable.
 		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
 
-
-		//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
-		SetWindowPos(hwind, NULL, rcClient.left + 5, rcClient.top + 5, width - 10, height - 10, SWP_FRAMECHANGED);
-		SetWindowPos(hwind, NULL, rcClient.left, rcClient.top, width, height, SWP_FRAMECHANGED);
-
 		handle->m_browser->GetHost()->WasResized();
 
 		break;
@@ -257,10 +252,15 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PostQuitMessage(0);
 		break;
 	}
-	case WM_MOVE: {
+	case WM_EXITSIZEMOVE: {
 		std::cout << "Window moved" << std::endl;
 
 		if (handle.get() != nullptr) {
+
+			//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
+			SetWindowPos(hwind, NULL, rcClient.left + 5, rcClient.top + 5, width - 10, height - 10, SWP_FRAMECHANGED);
+			SetWindowPos(hwind, NULL, rcClient.left, rcClient.top, width, height, SWP_FRAMECHANGED);
+
 			handle->m_browser->Reload();
 		}
 
