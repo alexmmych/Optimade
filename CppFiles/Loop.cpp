@@ -12,13 +12,11 @@ void MessageLoop()
     BOOL boolean;
     MSG msg = { 0 };
 
-    while (msg.message != WM_QUIT)
-    {
         // Process any messages in the queue.
-        if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        while(GetMessageW(&msg, NULL, 0, 0))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-    }
+    
 }
