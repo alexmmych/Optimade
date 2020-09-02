@@ -258,10 +258,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		if (handle.get() != nullptr) {
 
 			//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
-			SetWindowPos(hwind, NULL, rcClient.left + 5, rcClient.top + 5, width - 10, height - 10, SWP_FRAMECHANGED);
-			SetWindowPos(hwind, NULL, rcClient.left, rcClient.top, width, height, SWP_FRAMECHANGED);
-
-			handle->m_browser->Reload();
+			SetWindowPos(hwind, NULL, rcClient.left + 10, rcClient.top + 10, width + 10, height + 10, SWP_FRAMECHANGED);
+			SetWindowPos(hwind, NULL, rcClient.left, rcClient.top , width + 10, height + 5 , SWP_FRAMECHANGED);
 		}
 
 		break;

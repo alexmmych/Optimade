@@ -20,7 +20,7 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	//Sets browser window handle as a child.
 	browserWindow = GetWindow(m_browser->GetHost()->GetWindowHandle(), GW_CHILD);
 	
-	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, Window::width+1, Window::height, SWP_SHOWWINDOW);
+	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, Window::width, Window::height, SWP_SHOWWINDOW);
 
 	SetTimer(Window::GetInstance()->GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
 }
