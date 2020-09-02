@@ -104,10 +104,9 @@ Window::~Window()
 
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
-
 	RECT rcClient;
-	LRESULT result;
 	GetWindowRect(hwind, &rcClient);
+
 	POINT mouse;
 
 	CefRefPtr<CefHandler> handle = CefHandler::GetInstance();
@@ -142,6 +141,11 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 		GetWindowRect(hwind, &rcClient);
+
+		if (handle.get() != nullptr && handle->m_browser != nullptr) {
+			SetWindowRgn(handle->m_browser->GetHost()->GetWindowHandle(), CreateRoundRectRgn(0, 0, width - 10, height - 10, 20, 20), TRUE);
+		}
+
 
 		EndPaint(hwind, &ps);
 
@@ -235,10 +239,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			PostQuitMessage(0);
 			return 0;
 		}
-
-		SetWindowRgn(handle->m_browser->GetHost()->GetWindowHandle(), CreateRoundRectRgn(0, 0, width - 10, height - 10, 20, 20), TRUE);
-
-		handle->m_browser->Reload();
 
 		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
 		//is highly noticeable.
