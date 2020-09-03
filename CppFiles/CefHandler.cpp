@@ -126,6 +126,12 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			//Calls functions to close CEF
 			CefHandler::GetInstance()->m_browser->GetHost()->CloseBrowser(true);
 			break;
+		case VK_F5:
+			//Set Focus to avoid nullptrs and crashes
+			SetFocus(hWnd);
+
+			CefHandler::GetInstance()->m_browser->Reload();
+			break;
 		}
 	}
 	case WM_NCDESTROY:
