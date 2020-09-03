@@ -14,11 +14,14 @@
     margin-left: 30px;
     width: 60px;
     height: 35px;
-    background-color: blueviolet;
     margin-top: 6px;
     right: 0;
     border-radius: 5px;
 }
+
+ .button:hover {
+    background-color: blueviolet;
+ }
 
 .image {
     height: auto;
