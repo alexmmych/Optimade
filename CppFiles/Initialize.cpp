@@ -50,8 +50,6 @@ int WINAPI WinMain(
     settings.no_sandbox = true;
     settings.multi_threaded_message_loop = true;
 
-    CreateConsole();
-
     Window::GetInstance();
 
     CefEnableHighDPISupport();
