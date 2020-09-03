@@ -20,6 +20,12 @@
     align-items: center;
     margin-right: 20px;
     border-radius: 5px;
+
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .button:hover {
