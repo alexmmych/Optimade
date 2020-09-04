@@ -3,6 +3,7 @@
 #include "C:/cef/include/cef_app.h"
 #include "../HeaderFiles/Window.h"
 #include "../HeaderFiles/CefHandler.h"
+#include "../HeaderFiles/pch.h"
 
 class WindowView : public CefApp, public CefBrowserProcessHandler, public CefRenderProcessHandler {
 public:
@@ -44,5 +45,6 @@ public:
 	  CefString& exception) OVERRIDE;
 
   // Provide the reference counting implementation for this class.
+private:
   IMPLEMENT_REFCOUNTING(MyV8Handler);
 };

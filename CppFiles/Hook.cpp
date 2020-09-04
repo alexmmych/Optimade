@@ -29,7 +29,7 @@ LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
 
 		switch (wParam) {
 		case WM_MOUSEMOVE: {
-			std::cout << "Mouse position is: x = " << pMouseStruct->pt.x << " | y = " << pMouseStruct->pt.y <<std::endl;
+			std::cout << "Mouse position is: x = " << pMouseStruct->pt.x << " | y = " << pMouseStruct->pt.y << std::endl;
 		}
 
 		}

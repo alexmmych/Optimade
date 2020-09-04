@@ -21,6 +21,9 @@ public:
 	virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE {
 		return this;
 	}
+
+	//CefClient method:
+	virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) OVERRIDE;
 	
 	//CefLoadHandler method:
 	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) OVERRIDE;
@@ -46,7 +49,6 @@ public:
 	WNDPROC SubclassWndProc;
 	CefRefPtr<CefBrowser> m_browser;
 	HWND browserWindow;
-
 
 private:
 

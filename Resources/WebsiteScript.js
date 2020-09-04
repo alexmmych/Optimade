@@ -1,9 +1,14 @@
 function init() {
-    document.getElementById("close").addEventListener("click", closed);
+    document.getElementById("close").addEventListener("click", quit);
+    document.getElementById("hide").addEventListener("click", hidden);
 }
 
-function closed() {
+function quit() {
     window.close();
+}
+
+function hidden() {
+    window.hide();
 }
 
 window.addEventListener("DOMContentLoaded", init);

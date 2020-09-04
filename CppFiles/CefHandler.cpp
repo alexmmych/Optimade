@@ -69,6 +69,13 @@ CefHandler::~CefHandler() {
 }
 
 
+bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) {
+	if (message->GetName() == "hide") {
+		std::cout << "Window hidden" << std::endl;
+		return true;
+	}
+}
+
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	POINT mouse;

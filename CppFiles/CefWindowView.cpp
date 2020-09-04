@@ -35,9 +35,9 @@ void WindowView::OnContextInitialized() {
 void WindowView::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) {
 	CefRefPtr<CefV8Value> object = context->GetGlobal();
 	CefRefPtr<CefV8Handler> handler = new MyV8Handler();
-	CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction("CefFunc", handler);
+	CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction("hide", handler);
 
-	object->SetValue("CefFunc", func, V8_PROPERTY_ATTRIBUTE_NONE);
+	object->SetValue("hide", func, V8_PROPERTY_ATTRIBUTE_NONE);
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
@@ -59,10 +59,11 @@ bool MyV8Handler::Execute(const CefString& name,
 	CefRefPtr<CefV8Value>& retval,
 	CefString& exception) {
 
-	if (name == "CefFunc") {
-		// Return my string value.
-		return true;
+	if (name == "hide") {
+		CefRefPtr<CefBrowser> browser = CefV8Context::GetCurrentContext()->GetBrowser();
+		CefRefPtr<CefProcessMessage> message = CefProcessMessage::Create(name);
+		browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
 	}
 
-	return false;
+	return true;
 }

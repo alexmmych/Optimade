@@ -136,6 +136,7 @@
   <ItemGroup>
     <None Include="Resources\Website.html" />
     <None Include="Resources\WebsiteScript.js" />
+    <None Include="Resources\WebsiteStyle.css" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
