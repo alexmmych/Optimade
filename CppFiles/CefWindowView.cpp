@@ -59,11 +59,9 @@ bool MyV8Handler::Execute(const CefString& name,
 	CefRefPtr<CefV8Value>& retval,
 	CefString& exception) {
 
-	if (name == "hide") {
-		CefRefPtr<CefBrowser> browser = CefV8Context::GetCurrentContext()->GetBrowser();
-		CefRefPtr<CefProcessMessage> message = CefProcessMessage::Create(name);
-		browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
-	}
+	CefRefPtr<CefBrowser> browser = CefV8Context::GetCurrentContext()->GetBrowser();
+	CefRefPtr<CefProcessMessage> message = CefProcessMessage::Create(name);
+	browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
 
 	return true;
 }
