@@ -10,6 +10,9 @@
 #include "../HeaderFiles/CefWindowView.h"
 #include "../HeaderFiles/Hook.h"
 
+#define CONSOLE_ENABLE
+#undef CONSOLE_ENABLE
+
 
 
                /***********************************************************/
@@ -50,7 +53,9 @@ int WINAPI WinMain(
     settings.no_sandbox = true;
     settings.multi_threaded_message_loop = true;
 
+#ifdef CONSOLE_ENABLE
     CreateConsole();
+#endif
 
     Window::GetInstance();
 

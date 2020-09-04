@@ -11,6 +11,10 @@
 
 LONG Window::width = 1000;
 LONG Window::height = 1000;
+
+LONG Window::windowX = 100;
+LONG Window::windowY = 50;
+
 Window* Window::ptrInstance = nullptr;
 
 
@@ -94,7 +98,7 @@ void Window::ShowAWindow()
 
 	//Changes the window to be really small and then scales it back to its original size in order to get rid of the hanging edges.
 	SetWindowPos(WindowHandle, NULL, 0, 0, 100, 100, SWP_SHOWWINDOW);
-	SetWindowPos(WindowHandle, NULL, 100, 50, width, height, SWP_SHOWWINDOW);
+	SetWindowPos(WindowHandle, NULL, windowX, windowY, width, height, SWP_SHOWWINDOW);
 }
 
 Window::~Window()
@@ -237,6 +241,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		//Resets width and height values
 		width = rcClient.right - rcClient.left;
 		height = rcClient.bottom - rcClient.top;
+		windowX = rcClient.left;
+		windowY = rcClient.top;
 
 		//Checks if CEF's handle is nullptr, in order to make sure that no calls to a nullptr instance are done.
 		if (handle.get() == nullptr) {
@@ -262,8 +268,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		if (handle.get() != nullptr) {
 
 			//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.
-			SetWindowPos(hwind, NULL, rcClient.left + 10, rcClient.top + 10, width + 10, height + 10, SWP_FRAMECHANGED);
-			SetWindowPos(hwind, NULL, rcClient.left, rcClient.top , width + 10, height + 5 , SWP_FRAMECHANGED);
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, windowX + 10, windowY + 10, width + 10, height + 10, SWP_FRAMECHANGED);
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, windowX, windowY, width + 10, height + 5, SWP_FRAMECHANGED);
 		}
 
 		break;

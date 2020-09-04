@@ -76,21 +76,31 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 	}
 
 	if (message->GetName() == "size") {
+		//If the window is maximized
 		if (maximized == false) {
 
 			maximized = true;
 			minimized = false;
 
-			std::cout << "Window is maximized" << std::endl;
+			prevWidth = Window::width;
+			prevHeight = Window::height;
+			prevX = Window::windowX;
+			prevY = Window::windowY;
+
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, 0, 0, 1920, 1080, SWP_FRAMECHANGED);
 
 			return true;
 		}
+		//If the window is minimized
 		if (minimized == false) {
 
 			maximized = false;
 			minimized = true;
 
-			std::cout << "Window is minimized" << std::endl;
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX, prevY, prevWidth, prevHeight, SWP_FRAMECHANGED);
+
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX + 10, prevY + 10, prevWidth + 10, prevHeight + 10, SWP_FRAMECHANGED);
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX, prevY, prevWidth + 10, prevHeight + 5, SWP_FRAMECHANGED);
 
 			return true;
 		}

@@ -55,6 +55,11 @@ private:
 	bool maximized = false;
 	bool minimized = true;
 
+	int prevWidth;
+	int prevHeight;
+	int prevX;
+	int prevY;
+
 	IMPLEMENT_REFCOUNTING(CefHandler);
 
 };
