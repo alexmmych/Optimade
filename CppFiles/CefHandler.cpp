@@ -74,6 +74,28 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 		CloseWindow(Window::GetInstance()->GetWindowHandle());
 		return true;
 	}
+
+	if (message->GetName() == "size") {
+		if (maximized == false) {
+
+			maximized = true;
+			minimized = false;
+
+			std::cout << "Window is maximized" << std::endl;
+
+			return true;
+		}
+		if (minimized == false) {
+
+			maximized = false;
+			minimized = true;
+
+			std::cout << "Window is minimized" << std::endl;
+
+			return true;
+		}
+
+	}
 }
 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)

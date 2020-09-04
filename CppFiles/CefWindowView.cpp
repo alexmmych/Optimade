@@ -35,9 +35,12 @@ void WindowView::OnContextInitialized() {
 void WindowView::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) {
 	CefRefPtr<CefV8Value> object = context->GetGlobal();
 	CefRefPtr<CefV8Handler> handler = new MyV8Handler();
-	CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction("hide", handler);
 
-	object->SetValue("hide", func, V8_PROPERTY_ATTRIBUTE_NONE);
+	CefRefPtr<CefV8Value> hide = CefV8Value::CreateFunction("hide", handler);
+	CefRefPtr<CefV8Value> size = CefV8Value::CreateFunction("size", handler);
+
+	object->SetValue("hide", hide, V8_PROPERTY_ATTRIBUTE_NONE);
+	object->SetValue("size", size, V8_PROPERTY_ATTRIBUTE_NONE);
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {

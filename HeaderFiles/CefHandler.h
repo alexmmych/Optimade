@@ -52,6 +52,9 @@ public:
 
 private:
 
+	bool maximized = false;
+	bool minimized = true;
+
 	IMPLEMENT_REFCOUNTING(CefHandler);
 
 };
