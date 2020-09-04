@@ -71,7 +71,7 @@ CefHandler::~CefHandler() {
 
 bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) {
 	if (message->GetName() == "hide") {
-		std::cout << "Window hidden" << std::endl;
+		CloseWindow(Window::GetInstance()->GetWindowHandle());
 		return true;
 	}
 }
