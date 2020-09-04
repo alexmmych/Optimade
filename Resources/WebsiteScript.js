@@ -1,9 +1,9 @@
 function init() {
-    document.getElementById("close").addEventListener("click", close);
+    document.getElementById("close").addEventListener("click", closed);
 }
 
-function close() {
-    alert(window.CefFunc());
+function closed() {
+    window.close();
 }
 
 window.addEventListener("DOMContentLoaded", init);

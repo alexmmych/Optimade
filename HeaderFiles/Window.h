@@ -42,6 +42,8 @@ public:
 	HWND GetWindowHandle() { return WindowHandle; };
 	HINSTANCE GetHandleInstance() { return HandleInstance; };
 
+	void CloseWindow();
+
 	static LONG width;
 	static LONG height;
 

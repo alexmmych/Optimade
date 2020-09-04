@@ -102,6 +102,10 @@ Window::~Window()
 	UnregisterClassW(WindowClass, HandleInstance);
 }
 
+void Window::CloseWindow() {
+	PostMessageW(WindowHandle, WM_CLOSE, NULL, NULL);
+}
+
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	RECT rcClient;
@@ -219,7 +223,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_TIMER: {
 		switch (wparam) {
 		case ID_TIMER: {
-			if (handle.get() == nullptr) {
+			if (handle.get() == nullptr || handle->m_browser.get() == nullptr) {
 				PostQuitMessage(0);
 				return 0;
 			}

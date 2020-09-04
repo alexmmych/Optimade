@@ -45,6 +45,24 @@ void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, Ce
 	command_line->AppendSwitch("no-sanbox");
 }
 
+void WindowView::OnBrowserDestroyed(CefRefPtr<CefBrowser> browser) {
+	Window::GetInstance()->CloseWindow();
+}
+
 WindowView::~WindowView() {
 
+}
+
+bool MyV8Handler::Execute(const CefString& name,
+	CefRefPtr<CefV8Value> object,
+	const CefV8ValueList& arguments,
+	CefRefPtr<CefV8Value>& retval,
+	CefString& exception) {
+
+	if (name == "CefFunc") {
+		// Return my string value.
+		return true;
+	}
+
+	return false;
 }

@@ -25,6 +25,7 @@ public:
 
 //CefRenderProcessHandler methods:
 	virtual void OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) OVERRIDE;
+	virtual void OnBrowserDestroyed(CefRefPtr<CefBrowser>browser) OVERRIDE;
 
 private:
 	// Include the default reference counting implementation.
@@ -37,19 +38,10 @@ public:
   MyV8Handler() {}
 
   virtual bool Execute(const CefString& name,
-                       CefRefPtr<CefV8Value> object,
-                       const CefV8ValueList& arguments,
-                       CefRefPtr<CefV8Value>& retval,
-                       CefString& exception) OVERRIDE {
-    if (name == "CefFunc") {
-      // Return my string value.
-      retval = CefV8Value::CreateString("My Value!");
-      return true;
-    }
-
-    // Function does not exist.
-    return false;
-  }
+	  CefRefPtr<CefV8Value> object,
+	  const CefV8ValueList& arguments,
+	  CefRefPtr<CefV8Value>& retval,
+	  CefString& exception) OVERRIDE;
 
   // Provide the reference counting implementation for this class.
   IMPLEMENT_REFCOUNTING(MyV8Handler);

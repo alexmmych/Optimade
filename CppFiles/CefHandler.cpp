@@ -31,11 +31,13 @@ bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 	RemoveWindowSubclass(CefHandler::GetInstance()->browserWindow, &SubclassWindowProcedure, 0);
 
 	cef_instance = nullptr;
+
 	return true;
 }
 
 void CefHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
 	m_browser = NULL;
+	Window::GetInstance()->CloseWindow();
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
