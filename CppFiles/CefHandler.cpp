@@ -62,12 +62,6 @@ void CefHandler::OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> 
 	SetWindowSubclass(browserWindow, &SubclassWindowProcedure, 0, 0);
 }
 
-bool CefHandler::OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) {
-	return false;
-}
-
-
-
 CefHandler::~CefHandler() {
 	cef_instance = nullptr;
 }

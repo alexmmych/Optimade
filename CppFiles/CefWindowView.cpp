@@ -32,6 +32,14 @@ void WindowView::OnContextInitialized() {
 		nullptr, nullptr);
 }
 
+void WindowView::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) {
+	CefRefPtr<CefV8Value> object = context->GetGlobal();
+	CefRefPtr<CefV8Handler> handler = new MyV8Handler();
+	CefRefPtr<CefV8Value> func = CefV8Value::CreateFunction("CefFunc", handler);
+
+	object->SetValue("CefFunc", func, V8_PROPERTY_ATTRIBUTE_NONE);
+}
+
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
 	command_line->AppendSwitch("disable-gpu");
 	command_line->AppendSwitch("no-sanbox");

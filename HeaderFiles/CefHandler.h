@@ -5,7 +5,7 @@
 #include "C:/cef/include/cef_client.h"
 #include "../HeaderFiles/Window.h"
 
-class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler, public CefLoadHandler, public CefDragHandler {
+class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler, public CefLoadHandler {
 public:
 	CefHandler();
 	~CefHandler();
@@ -21,14 +21,7 @@ public:
 	virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE {
 		return this;
 	}
-
-	virtual CefRefPtr<CefDragHandler> GetDragHandler() OVERRIDE {
-		return this;
-	}
-
-	//CefDraghandler method:
-	virtual bool OnDragEnter(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDragData> dragData, CefDragHandler::DragOperationsMask mask) OVERRIDE;
-
+	
 	//CefLoadHandler method:
 	virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, TransitionType transition_type) OVERRIDE;
 
@@ -58,6 +51,7 @@ public:
 private:
 
 	IMPLEMENT_REFCOUNTING(CefHandler);
+
 };
 
 //The window procedure callback of the browser window. 

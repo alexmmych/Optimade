@@ -64,7 +64,7 @@
     <None Include="Resources\Website.html">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Resources\Draggable.html">
+    <None Include="Resources\WebsiteScript.js">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -3,7 +3,7 @@ function init() {
 }
 
 function close() {
-    alert("Window closed!");
+    alert(window.CefFunc());
 }
 
 window.addEventListener("DOMContentLoaded", init);
