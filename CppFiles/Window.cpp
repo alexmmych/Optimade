@@ -265,6 +265,12 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	case WM_EXITSIZEMOVE: {
 		std::cout << "Window moved" << std::endl;
 
+		//Resets width and height values
+		width = rcClient.right - rcClient.left;
+		height = rcClient.bottom - rcClient.top;
+		windowX = rcClient.left;
+		windowY = rcClient.top;
+
 		if (handle.get() != nullptr) {
 
 			//Resizes the main window by 10 pixels in order to flush the faulty pixels which are left behind on minimizng.

@@ -80,27 +80,31 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 		if (maximized == false) {
 
 			maximized = true;
-			minimized = false;
 
+			//Saves the logical coordinates and values of the window
 			prevWidth = Window::width;
 			prevHeight = Window::height;
 			prevX = Window::windowX;
 			prevY = Window::windowY;
 
-			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, 0, 0, 1920, 1080, SWP_FRAMECHANGED);
+			//Maximized window (-10's and +20's are there in order to make the window fully displayed)
+			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, -10, -10, 1920 + 20, 1080 + 20, SWP_FRAMECHANGED);
 
 			return true;
 		}
 		//If the window is minimized
-		if (minimized == false) {
+		if (maximized == true) {
 
 			maximized = false;
-			minimized = true;
 
+			//Minimizes window
 			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX, prevY, prevWidth, prevHeight, SWP_FRAMECHANGED);
 
-			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX + 10, prevY + 10, prevWidth + 10, prevHeight + 10, SWP_FRAMECHANGED);
-			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX, prevY, prevWidth + 10, prevHeight + 5, SWP_FRAMECHANGED);
+			//Sleep for a second in order for 'SendMessage' to get a time to process and resize correctly.
+			Sleep(1000);
+
+			//Sends the 'WM_EXITSIZEMOVE' message in order make the window rounded again.
+			SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
 
 			return true;
 		}
