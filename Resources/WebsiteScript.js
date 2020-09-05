@@ -6,12 +6,12 @@ function init() {
     document.getElementById("hide").addEventListener("click", hidden);
 }
 
+
 function quit() {
     window.close();
 }
 
 function resize() {
-
     if (maximized == true) {
         document.getElementById("size_img").src = "MaximizeButton.png";
         maximized = false;
@@ -20,8 +20,18 @@ function resize() {
         document.getElementById("size_img").src = "MinimizeButton.png";
         maximized = true;
     }
-
     window.size();
+}
+
+function change() {
+    if (maximized == true) {
+        document.getElementById("size_img").src = "MaximizeButton.png";
+        maximized = false;
+    }
+    else {
+        document.getElementById("size_img").src = "MinimizeButton.png";
+        maximized = true;
+    }
 }
 
 function hidden() {

@@ -166,6 +166,9 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 				//Minimizes window
 				CefHandler::GetInstance()->WindowResize();
 				CefHandler::GetInstance()->maximized = false;
+
+				//Sets the maximized variable as false in JavaScript.
+				CefHandler::GetInstance()->m_browser->GetMainFrame()->ExecuteJavaScript("change()","about:blank",0);
 				break;
 			}
 			else {
