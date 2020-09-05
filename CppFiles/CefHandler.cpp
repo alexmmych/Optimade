@@ -115,6 +115,9 @@ void CefHandler::WindowResize()
 {
 	SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, CefHandler::prevX, CefHandler::prevY, CefHandler::prevWidth, CefHandler::prevHeight, SWP_FRAMECHANGED);
 
+	//Sleep so WM_EXITSIZEMOVE gets time to process.
+	Sleep(1000);
+
 	//Sends the 'WM_EXITSIZEMOVE' message in order make the window rounded again.
 	SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
 }
@@ -157,6 +160,9 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		if (lastY <= 50) {
 
 			if (CefHandler::GetInstance()->maximized == true) {
+				//Releases capture so the window isn't reset to mouse's position.
+				ReleaseCapture();
+
 				//Minimizes window
 				CefHandler::GetInstance()->WindowResize();
 				CefHandler::GetInstance()->maximized = false;
