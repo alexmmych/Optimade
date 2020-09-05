@@ -50,14 +50,16 @@ public:
 	CefRefPtr<CefBrowser> m_browser;
 	HWND browserWindow;
 
-private:
-
 	bool maximized = false;
 
-	int prevWidth;
-	int prevHeight;
-	int prevX;
-	int prevY;
+	static int prevWidth;
+	static int prevHeight;
+	static int prevX;
+	static int prevY;
+
+	void WindowResize();
+
+private:
 
 	IMPLEMENT_REFCOUNTING(CefHandler);
 

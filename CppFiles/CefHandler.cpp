@@ -1,6 +1,11 @@
 #include "../HeaderFiles/CefHandler.h"
 #include "../HeaderFiles/pch.h"
 
+int CefHandler::prevWidth = 0;
+int CefHandler::prevHeight = 0;
+int CefHandler::prevX = 0;
+int CefHandler::prevY = 0;
+
 namespace {
 	CefHandler* cef_instance = nullptr;
 }
@@ -98,18 +103,20 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 			maximized = false;
 
 			//Minimizes window
-			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, prevX, prevY, prevWidth, prevHeight, SWP_FRAMECHANGED);
-
-			//Sleep for a second in order for 'SendMessage' to get a time to process and resize correctly.
-			Sleep(1000);
-
-			//Sends the 'WM_EXITSIZEMOVE' message in order make the window rounded again.
-			SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
+			WindowResize();
 
 			return true;
 		}
 
 	}
+}
+
+void CefHandler::WindowResize()
+{
+	SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, CefHandler::prevX, CefHandler::prevY, CefHandler::prevWidth, CefHandler::prevHeight, SWP_FRAMECHANGED);
+
+	//Sends the 'WM_EXITSIZEMOVE' message in order make the window rounded again.
+	SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
 }
 
 LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
@@ -148,7 +155,18 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 
 		//Moves the window handle to the current position of the mouse.
 		if (lastY <= 50) {
-			MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+
+			if (CefHandler::GetInstance()->maximized == true) {
+				//Minimizes window
+				CefHandler::GetInstance()->WindowResize();
+				CefHandler::GetInstance()->maximized = false;
+				break;
+			}
+			else {
+				MoveWindow(Window::GetInstance()->GetWindowHandle(), x, y, Window::GetInstance()->width, Window::GetInstance()->height, false);
+				break;
+			}
+			break;
 		}
 
 		break;
