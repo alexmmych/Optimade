@@ -28,6 +28,23 @@
     user-select: none;
 }
 
+.logo {
+    position: fixed;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    left: 0px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 .button:hover {
     background-color: blueviolet;
 }
