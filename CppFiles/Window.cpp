@@ -7,7 +7,6 @@
 /*********************************************************************************************************************/
 
 #include "../HeaderFiles/Window.h"
-#include "../HeaderFiles/pch.h"
 
 LONG Window::width = 1000;
 LONG Window::height = 1000;
@@ -269,9 +268,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	case WM_SETFOCUS: {
 		std::cout << "Window got focus" << std::endl;
-		if (handle.get() != nullptr  && handle->WinKeyPress == true) {
-			std::cout << "Window focus lost" << std::endl;
-		}
 		break;
 	}
 	case WM_EXITSIZEMOVE: {

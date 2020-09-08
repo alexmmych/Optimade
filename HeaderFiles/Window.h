@@ -1,6 +1,7 @@
 //This is the header file which defines the window class for "WindowClass.cpp".
 
 #pragma once
+#include "../HeaderFiles/pch.h"
 #include "../HeaderFiles/Loop.h"
 #include "../HeaderFiles/CefHandler.h"
 #include "../Resources/resource.h"

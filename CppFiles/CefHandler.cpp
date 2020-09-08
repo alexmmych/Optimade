@@ -199,13 +199,13 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 			break;
 		case VK_LWIN:
 			std::cout << "Windows key pressed" << std::endl;
+			CefHandler::GetInstance()->m_browser->Reload();
 
-			CefHandler::GetInstance()->WinKeyPress = true;
 			break;
 		case VK_RWIN:
 			std::cout << "Windows key pressed" << std::endl;
+			CefHandler::GetInstance()->m_browser->Reload();
 
-			CefHandler::GetInstance()->WinKeyPress = true;
 			break;
 		}
 	}
