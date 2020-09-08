@@ -3,6 +3,7 @@
 #pragma once
 #include "../HeaderFiles/Loop.h"
 #include "../HeaderFiles/CefHandler.h"
+#include "../Resources/resource.h"
 
 /*The main class which creates the window and connects other classes together*/
 class Window {
@@ -33,6 +34,9 @@ private:
 
 	//Shows the window.
 	void ShowAWindow();
+
+	//Returns the icon to the window.
+	HICON GetIcon();
 
 //The window procedure callback of the main window.
 	static LRESULT CALLBACK WindowProcedure(HWND, UINT, WPARAM, LPARAM);

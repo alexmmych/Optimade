@@ -132,11 +132,20 @@
     <ClInclude Include="headerfiles\Loop.h" />
     <ClInclude Include="headerfiles\pch.h" />
     <ClInclude Include="HeaderFiles\Window.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="Resources\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Website.html" />
     <None Include="Resources\WebsiteScript.js" />
     <None Include="Resources\WebsiteStyle.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -34,6 +34,10 @@ Window::Window()
 
 }
 
+HICON Window::GetIcon() {
+	return LoadIconW(HandleInstance, MAKEINTRESOURCEW(IDI_ICON1));
+}
+
 void Window::CreateWindowClass()
 {
 	WNDCLASSEXW wcx = { 0 };
@@ -43,7 +47,7 @@ void Window::CreateWindowClass()
 	wcx.cbClsExtra = 0;
 	wcx.cbWndExtra = 0;
 	wcx.hInstance = HandleInstance;
-	wcx.hIcon = NULL;     //To do: Create and apply an icon here.
+	wcx.hIcon = GetIcon();     //To do: Create and apply an icon here.
 	wcx.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcx.hbrBackground = NULL;
 	wcx.lpszMenuName = NULL;
