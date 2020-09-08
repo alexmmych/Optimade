@@ -11,6 +11,7 @@
 #include "../HeaderFiles/Hook.h"
 
 #define CONSOLE_ENABLE
+#undef CONSOLE_ENABLE
 
 
 
