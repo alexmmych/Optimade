@@ -7,7 +7,9 @@
 #include <vssym32.h>
 #include <Uxtheme.h>
 #include <windowsx.h>
-#include <commctrl.h>
+
+#include <CommCtrl.h>
+#pragma comment(lib, "Comctl32.lib")
 
 #pragma comment (lib, "dwmapi.lib")
 #pragma comment (lib, "UxTheme.lib")

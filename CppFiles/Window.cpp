@@ -235,6 +235,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 				PostQuitMessage(0);
 				return 0;
 			}
+
+			if (GetForegroundWindow() == hwind) {
+				std::cout << "Parent window is active" << std::endl;
+			}
 			break;
 		}
 		}

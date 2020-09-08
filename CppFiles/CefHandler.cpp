@@ -158,7 +158,6 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 
 		//Moves the window handle to the current position of the mouse.
 		if (lastY <= 50) {
-
 			if (CefHandler::GetInstance()->maximized == true) {
 				//Releases capture so the window isn't reset to mouse's position.
 				ReleaseCapture();

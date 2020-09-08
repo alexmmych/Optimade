@@ -144,9 +144,6 @@
   <ItemGroup>
     <ResourceCompile Include="Resources\resource.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\icon1.ico" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
