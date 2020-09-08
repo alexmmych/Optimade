@@ -236,9 +236,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 				return 0;
 			}
 
-			if (GetForegroundWindow() == hwind) {
-				std::cout << "Parent window is active" << std::endl;
-			}
 			break;
 		}
 		}
@@ -268,6 +265,13 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 	}
 	case WM_CLOSE: {
 		PostQuitMessage(0);
+		break;
+	}
+	case WM_SETFOCUS: {
+		std::cout << "Window got focus" << std::endl;
+		if (handle.get() != nullptr  && handle->WinKeyPress == true) {
+			std::cout << "Window focus lost" << std::endl;
+		}
 		break;
 	}
 	case WM_EXITSIZEMOVE: {

@@ -51,6 +51,7 @@ public:
 	HWND browserWindow;
 
 	bool maximized = false;
+	bool WinKeyPress;
 
 	static int prevWidth;
 	static int prevHeight;
