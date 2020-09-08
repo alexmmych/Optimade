@@ -45,14 +45,29 @@
     user-select: none;
 }
 
-.text {
+.option {
     position: fixed;
     display: flex;
+    height: 50px;
     justify-content: center;
     align-items: center;
     font-family: Verdana;
     color: white;
-    margin-left: 100px;
+    margin-left: 80px;
+}
+
+.underline {
+    display:unset;
+    border: 2px solid blueviolet;
+    border-radius:3px;
+    bottom:0px;
+    position:absolute;
+    width:100%;
+    visibility:hidden;
+}
+
+.option:hover .underline{
+    visibility:visible;
 }
 
 .button:hover {
