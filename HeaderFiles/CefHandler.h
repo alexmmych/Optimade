@@ -5,7 +5,7 @@
 #include "C:/cef/include/cef_client.h"
 #include "../HeaderFiles/Window.h"
 
-class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler, public CefLoadHandler {
+class CefHandler : public CefClient, public CefRenderHandler, public CefLifeSpanHandler, public CefLoadHandler, public CefKeyboardHandler {
 public:
 	CefHandler();
 	~CefHandler();
