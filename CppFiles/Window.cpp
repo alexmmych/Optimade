@@ -35,12 +35,12 @@ Window::Window()
 }
 
 HICON Window::GetIcon() {
-	return LoadIconW(HandleInstance, MAKEINTRESOURCEW(IDI_ICON1));
+	return (HICON) LoadImageW(HandleInstance, MAKEINTRESOURCEW(IDI_ICON1),IMAGE_ICON,NULL,NULL,LR_DEFAULTSIZE);
 }
 
 void Window::CreateWindowClass()
 {
-	WNDCLASSEXW wcx = { 0 };
+	WNDCLASSEXW wcx = { 0 };	
 	wcx.cbSize = sizeof(wcx);
 	wcx.style = CS_VREDRAW | CS_HREDRAW;
 	wcx.lpfnWndProc = WindowProcedure;
