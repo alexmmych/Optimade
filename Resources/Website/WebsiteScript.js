@@ -13,11 +13,11 @@ function quit() {
 
 function resize() {
     if (maximized == true) {
-        document.getElementById("size_img").src = "MaximizeButton.png";
+        document.getElementById("size_img").src = "../MaximizeButton.png";
         maximized = false;
     }
     else {
-        document.getElementById("size_img").src = "MinimizeButton.png";
+        document.getElementById("size_img").src = "../MinimizeButton.png";
         maximized = true;
     }
     window.size();
@@ -25,11 +25,11 @@ function resize() {
 
 function change() {
     if (maximized == true) {
-        document.getElementById("size_img").src = "MaximizeButton.png";
+        document.getElementById("size_img").src = "../MaximizeButton.png";
         maximized = false;
     }
     else {
-        document.getElementById("size_img").src = "MinimizeButton.png";
+        document.getElementById("size_img").src = "../MinimizeButton.png";
         maximized = true;
     }
 }
