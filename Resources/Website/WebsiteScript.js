@@ -39,7 +39,7 @@ function hidden() {
 }
 
 function settings() {
-    document.body.style.opacity = 0.4;
+    document.getElementById("modal_1").style.display = "block";
 }
 
 window.addEventListener("DOMContentLoaded", init);
