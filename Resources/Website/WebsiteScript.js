@@ -4,8 +4,8 @@ function init() {
     document.getElementById("close").addEventListener("click", quit);
     document.getElementById("size").addEventListener("click", resize);
     document.getElementById("hide").addEventListener("click", hidden);
+    document.getElementById("settings").addEventListener("click", settings);
 }
-
 
 function quit() {
     window.close();
@@ -36,6 +36,10 @@ function change() {
 
 function hidden() {
     window.hide();
+}
+
+function settings() {
+    document.body.style.opacity = 0.4;
 }
 
 window.addEventListener("DOMContentLoaded", init);

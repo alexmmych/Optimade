@@ -45,16 +45,17 @@
     user-select: none;
 }
 
-.option {
+.settings {
     position: fixed;
     display: flex;
     height: 50px;
-    font-weight:bold;
+    font-weight: bold;
     justify-content: center;
     align-items: center;
     font-family: Verdana;
     color: white;
     margin-left: 80px;
+    cursor:pointer;
 }
 
 .underline {
@@ -67,7 +68,7 @@
     visibility:hidden;
 }
 
-.option:hover .underline{
+.settings:hover .underline{
     visibility:visible;
 }
 
