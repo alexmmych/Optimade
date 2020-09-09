@@ -39,7 +39,7 @@ function hidden() {
 }
 
 function settings() {
-    document.getElementById("modal_1").style.display = "block";
+    document.getElementById("modal_1").style.display = "flex";
 }
 
 window.addEventListener("DOMContentLoaded", init);
