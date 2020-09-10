@@ -1,10 +1,16 @@
 var maximized = false;
+var activated = false;
+var NightMode;
 
 function init() {
     document.getElementById("close").addEventListener("click", quit);
     document.getElementById("size").addEventListener("click", resize);
     document.getElementById("hide").addEventListener("click", hidden);
     document.getElementById("settings").addEventListener("click", settings);
+
+
+    NightMode = document.getElementById("night_mode");
+    NightMode.addEventListener("click", switch_state);
 }
 
 function quit() {
@@ -40,6 +46,21 @@ function hidden() {
 
 function settings() {
     document.getElementById("modal_1").style.display = "flex";
+} 
+
+function switch_state() {
+    if (activated == false) {
+        document.getElementById("night_mode_circle").style.animation = "state 0.5s forwards";
+        NightMode.style.animation = "color 0.5s forwards";
+
+        activated = true;
+    }
+    else {
+        document.getElementById("night_mode_circle").style.animation = "state_backwards 0.5s forwards";
+        NightMode.style.animation = "color_backwards 0.5s forwards";
+
+        activated = false;
+    }
 }
 
 window.addEventListener("DOMContentLoaded", init);

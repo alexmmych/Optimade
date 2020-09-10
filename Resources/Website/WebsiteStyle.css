@@ -96,16 +96,57 @@
     border-radius: 20px;
     margin-left: 10px;
     align-items: center;
+    cursor: pointer;
 }
 
 .circle {
     display: flex;
     position: relative;
     background-color: rgb(32,32,32);
-    width:30px;
-    height:30px;
-    border-radius:100%;
-    margin-left:5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-left: 5px;
+}
+
+@keyframes state {
+    from {
+        margin-left:5px;
+    }
+    to {
+        margin-left: 25px;
+        background-color: white;
+    }
+}
+
+@keyframes state_backwards {
+    from {
+        margin-left: 25px;
+        background-color: white;
+    }
+
+    to {
+        margin-left: 5px;
+    }
+}
+
+@keyframes color {
+    from {
+        background-color:white;
+    }
+    to {
+        background-color:blueviolet;
+    }
+}
+
+@keyframes color_backwards {
+    from {
+        background-color: blueviolet;
+    }
+
+    to {
+        background-color: white;
+    }
 }
 
 .option {
