@@ -8,9 +8,10 @@ function init() {
     document.getElementById("hide").addEventListener("click", hidden);
     document.getElementById("settings").addEventListener("click", settings);
 
-
     NightMode = document.getElementById("night_mode");
     NightMode.addEventListener("click", switch_state);
+
+    document.getElementById("close_popup").addEventListener("click",close_popup);
 }
 
 function quit() {
@@ -61,6 +62,10 @@ function switch_state() {
 
         activated = false;
     }
+}
+
+function close_popup() {
+    document.getElementById("modal_1").style.display = "none";
 }
 
 window.addEventListener("DOMContentLoaded", init);
