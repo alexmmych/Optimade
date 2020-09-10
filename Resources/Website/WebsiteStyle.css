@@ -90,11 +90,22 @@
 .switch {
     position: relative;
     display: flex;
-    background-color: rgb(32,32,32);
+    background-color: white;
     width: 60px;
     height: 35px;
-    border-radius:20px;
+    border-radius: 20px;
     margin-left: 10px;
+    align-items: center;
+}
+
+.circle {
+    display: flex;
+    position: relative;
+    background-color: rgb(32,32,32);
+    width:30px;
+    height:30px;
+    border-radius:100%;
+    margin-left:5px;
 }
 
 .option {
