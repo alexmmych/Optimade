@@ -1,11 +1,6 @@
 #include "../HeaderFiles/CefHandler.h"
 #include "../HeaderFiles/pch.h"
 
-int CefHandler::prevWidth = 0;
-int CefHandler::prevHeight = 0;
-int CefHandler::prevX = 0;
-int CefHandler::prevY = 0;
-
 namespace {
 	CefHandler* cef_instance = nullptr;
 }
@@ -84,26 +79,20 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 		//If the window is maximized
 		if (maximized == false) {
 
+			//Maximizes window
+			WindowResize(maximized);
+
 			maximized = true;
-
-			//Saves the logical coordinates and values of the window
-			prevWidth = Window::width;
-			prevHeight = Window::height;
-			prevX = Window::windowX;
-			prevY = Window::windowY;
-
-			//Maximized window (-10's and +20's are there in order to make the window fully displayed)
-			SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, -10, -10, 1920 + 20, 1080 + 20, SWP_FRAMECHANGED);
 
 			return true;
 		}
 		//If the window is minimized
 		if (maximized == true) {
 
-			maximized = false;
-
 			//Minimizes window
-			WindowResize();
+			WindowResize(maximized);
+
+			maximized = false;
 
 			return true;
 		}
@@ -111,12 +100,15 @@ bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefP
 	}
 }
 
-void CefHandler::WindowResize()
+void CefHandler::WindowResize(bool fullscreen)
 {
-	SetWindowPos(Window::GetInstance()->GetWindowHandle(), NULL, CefHandler::prevX, CefHandler::prevY, CefHandler::prevWidth, CefHandler::prevHeight, SWP_FRAMECHANGED);
+	if (fullscreen == false) {
+		ShowWindow(Window::GetInstance()->GetWindowHandle(), SW_MAXIMIZE);
+	}
 
-	//Sleep so WM_EXITSIZEMOVE gets time to process.
-	Sleep(1000);
+	if (fullscreen == true) {
+		ShowWindow(Window::GetInstance()->GetWindowHandle(), SW_RESTORE);
+	}
 
 	//Sends the 'WM_EXITSIZEMOVE' message in order make the window rounded again.
 	SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
@@ -159,11 +151,9 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		//Moves the window handle to the current position of the mouse.
 		if (lastY <= 50) {
 			if (CefHandler::GetInstance()->maximized == true) {
-				//Releases capture so the window isn't reset to mouse's position.
-				ReleaseCapture();
 
 				//Minimizes window
-				CefHandler::GetInstance()->WindowResize();
+				CefHandler::GetInstance()->WindowResize(CefHandler::GetInstance()->maximized);
 				CefHandler::GetInstance()->maximized = false;
 
 				//Sets the maximized variable as false in JavaScript.

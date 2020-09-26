@@ -52,12 +52,7 @@ public:
 
 	bool maximized = false;
 
-	static int prevWidth;
-	static int prevHeight;
-	static int prevX;
-	static int prevY;
-
-	void WindowResize();
+	void WindowResize(bool fullscreen);
 
 private:
 
