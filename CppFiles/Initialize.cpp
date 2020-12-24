@@ -14,19 +14,6 @@
 #undef CONSOLE_ENABLE
 
 
-
-               /***********************************************************/
-               /*                                                         */
-               /*   In order to read the comments correctly have in mind  */
-               /*   that the code to the right of a variable or function  */
-               /*   means it only applies to it. In other words there is  */
-               /*   no newline in code which is written with the "//" me- */
-               /*   thod.                                                 */
-               /*                                                         */
-               /***********************************************************/
-
-
-
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,

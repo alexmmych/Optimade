@@ -70,7 +70,7 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\cef\include;C:\cef\libcef_dll;$(IncludePath)</IncludePath>
+    <IncludePath>C:\cef;C:\cef\libcef_dll;C:\cef\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\cef\Debug;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.18362.0\um\x64;C:\cef\Resources;C:\cef\libcef_dll;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -106,7 +106,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalDependencies>C:\cef\Debug\libcef.lib;C:\cef\build\libcef_dll_wrapper\libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\cef\Debug\libcef.lib;C:\cef\build\libcef_dll_wrapper\Debug\libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>

@@ -68,13 +68,16 @@ CefHandler::~CefHandler() {
 	cef_instance = nullptr;
 }
 
-
+//Receives the Javascript messages and acts upon them.
 bool CefHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) {
+
+	//If the "Minimize" button is hit, close the window
 	if (message->GetName() == "hide") {
 		CloseWindow(Window::GetInstance()->GetWindowHandle());
 		return true;
 	}
 
+	//If the "Maximize/Restore" button is hit, check in which state it is and then maximize or restore it.
 	if (message->GetName() == "size") {
 		//If the window is maximized
 		if (maximized == false) {
@@ -107,6 +110,10 @@ void CefHandler::WindowResize(bool fullscreen)
 	}
 
 	if (fullscreen == true) {
+		ShowWindow(Window::GetInstance()->GetWindowHandle(), SW_RESTORE);
+
+		//Quickly close and show the window in order to reset the window and regain it's rouneded rectangle shape it would lose otherwise.
+		CloseWindow(Window::GetInstance()->GetWindowHandle());
 		ShowWindow(Window::GetInstance()->GetWindowHandle(), SW_RESTORE);
 	}
 

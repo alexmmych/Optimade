@@ -6,23 +6,23 @@
 #include "../HeaderFiles/CefHandler.h"
 #include "../Resources/resource.h"
 
-/*The main class which creates the window and connects other classes together*/
+//The main class which creates the window and connects other classes together
 class Window {
 private:
 
 	static Window* ptrInstance;
 
+	//Constructor and destructor
 	Window();
 	~Window();
 
-	//Variables used in the functions of this class.
-
+	//Essential variables of this class.
 	HINSTANCE HandleInstance;
+
 	const LPCWSTR WindowClass = L"WindClass1";
 	const LPCWSTR WindowName = L"Optimade";
 
 	HWND WindowHandle;
-
 	RECT windowRect;
 
 	//These functions are the processes which are called when a "Window" class is created.
@@ -44,16 +44,22 @@ private:
 
 public:
 
+	//Functions to get the handles.
 	HWND GetWindowHandle() { return WindowHandle; };
 	HINSTANCE GetHandleInstance() { return HandleInstance; };
 
+	//Closes the window
 	void CloseWindow();
 
+
+	//Variables representing the width and height of the window.
 	static LONG width;
 	static LONG height;
 	static LONG windowX;
 	static LONG windowY;
 
+
+	//Static function in order for the class to work as a singleton.
 	static Window* GetInstance() {
 		if (!ptrInstance) {
 			ptrInstance = new Window();
@@ -63,4 +69,3 @@ public:
 
 };
 
-//Note: Surprisingly good commenting on my part for one of my first actual projects.

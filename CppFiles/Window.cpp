@@ -20,7 +20,7 @@ Window* Window::ptrInstance = nullptr;
 Window::Window()
 	:
 	HandleInstance(GetModuleHandle(nullptr)),
-	windowRect{0,0,width,height}//Makes "HandleInstance" the hInstance of "WinMain".
+	windowRect{0,0,width,height} 
 {
 
 	CreateWindowClass();
@@ -168,7 +168,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			NCCALCSIZE_PARAMS* pncsp = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam);
 
 			//The +/- 5 allows us to create a small border around CEF in which WM_NCHITTEST messages go through.
-
 			pncsp->rgrc[0].left = pncsp->rgrc[0].left + 5;
 			pncsp->rgrc[0].top = pncsp->rgrc[0].top + 5;
 			pncsp->rgrc[0].right = pncsp->rgrc[0].right - 5;

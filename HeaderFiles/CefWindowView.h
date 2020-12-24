@@ -5,13 +5,20 @@
 #include "../HeaderFiles/CefHandler.h"
 #include "../HeaderFiles/pch.h"
 
+
+//WindowView class used to initialize and configure CEF inside of our window.
+
+//Note: Methods are the functions which are going to be used from the inherited classes.
+
 class WindowView : public CefApp, public CefBrowserProcessHandler, public CefRenderProcessHandler {
 public:
+
+	//Constructor and destructor.
 	WindowView();
 	~WindowView();
 
-// CefApp methods:
-	
+//CefApp methods:
+
 	virtual CefRefPtr<CefBrowserProcessHandler> GetBrowserProcessHandler() OVERRIDE {
 		return this;
 	}
@@ -20,7 +27,7 @@ public:
 		return this;
 	}
 
-// CefBrowserProcessHandler methods:
+//CefBrowserProcessHandler methods:
 	virtual void OnContextInitialized() OVERRIDE;
 	virtual void OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) OVERRIDE;
 
@@ -34,6 +41,7 @@ private:
 
 };
 
+//V8 Handler used to communicate between Javascript and C++.
 class MyV8Handler : public CefV8Handler {
 public:
   MyV8Handler() {}
@@ -44,7 +52,7 @@ public:
 	  CefRefPtr<CefV8Value>& retval,
 	  CefString& exception) OVERRIDE;
 
-  // Provide the reference counting implementation for this class.
+//Provide the reference counting implementation for this class.
 private:
   IMPLEMENT_REFCOUNTING(MyV8Handler);
 };
