@@ -96,21 +96,14 @@ void Window::CreateAWindow()
 
 void Window::ShowAWindow()
 {
-	ShowWindow(WindowHandle, SW_SHOWDEFAULT);  //Re-do this, maybe it causes the problem.
-	std::cout << "Status: Window created successfully\n";
+	ShowWindow(WindowHandle, SW_RESTORE);
 
-	//Changes the window to be really small and then scales it back to its original size in order to get rid of the hanging edges.
-	SetWindowPos(WindowHandle, NULL, 0, 0, 100, 100, SWP_SHOWWINDOW);
-	SetWindowPos(WindowHandle, NULL, windowX, windowY, width, height, SWP_SHOWWINDOW);
+	std::cout << "Status: Window created successfully\n";
 }
 
 Window::~Window()
 {
 	UnregisterClassW(WindowClass, HandleInstance);
-}
-
-void Window::CloseWindow() {
-	PostMessageW(WindowHandle, WM_CLOSE, NULL, NULL);
 }
 
 LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LPARAM lparam)
@@ -157,7 +150,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			SetWindowRgn(handle->m_browser->GetHost()->GetWindowHandle(), CreateRoundRectRgn(0, 0, width - 10, height - 10, 20, 20), TRUE);
 		}
 
-
 		EndPaint(hwind, &ps);
 
 		break;
@@ -175,6 +167,7 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 
 			return 0;
 		}
+
 		break;
 	}
 	//When WM_NCHITTEST is sent, it checks to see if the cursor is found in the corners and gives a leeway of 10 pixels for the user.
@@ -253,8 +246,6 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 			return 0;
 		}
 
-		//The x and y variables specify how much space is there between the parent window and the browser, it is set to 10 in order to be resizable but if a video is played it
-		//is highly noticeable.
 		SetWindowPos(handle->m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, width, height, SWP_SHOWWINDOW);
 
 		handle->m_browser->GetHost()->WasResized();

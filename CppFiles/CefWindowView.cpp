@@ -14,7 +14,6 @@ void WindowView::OnContextInitialized() {
 	std::string url;
 
 	url = "C:/Optimade/Resources/Website/Website.html";
-//	url = "https://www.google.com";
 
 	CefWindowInfo window_info;
 
@@ -44,12 +43,11 @@ void WindowView::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFr
 }
 
 void WindowView::OnBeforeCommandLineProcessing(const CefString& process_type, CefRefPtr<CefCommandLine> command_line) {
-	command_line->AppendSwitch("disable-gpu");
-	command_line->AppendSwitch("no-sanbox");
+	command_line->AppendSwitch(CefString("no-sanbox"));
 }
 
 void WindowView::OnBrowserDestroyed(CefRefPtr<CefBrowser> browser) {
-	Window::GetInstance()->CloseWindow();
+	PostMessageW(Window::GetInstance()->GetWindowHandle(), WM_CLOSE, NULL, NULL);
 }
 
 WindowView::~WindowView() {

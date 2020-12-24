@@ -48,9 +48,6 @@ public:
 	HWND GetWindowHandle() { return WindowHandle; };
 	HINSTANCE GetHandleInstance() { return HandleInstance; };
 
-	//Closes the window
-	void CloseWindow();
-
 
 	//Variables representing the width and height of the window.
 	static LONG width;

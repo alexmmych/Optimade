@@ -23,6 +23,12 @@ void CefHandler::OnAfterCreated(CefRefPtr<CefBrowser> browser) {
 	SetWindowPos(m_browser->GetHost()->GetWindowHandle(), HWND_TOP, 0, 0, Window::width, Window::height, SWP_SHOWWINDOW);
 
 	SetTimer(Window::GetInstance()->GetWindowHandle(), ID_TIMER, 1000, (TIMERPROC)NULL);
+
+	//For loop which runs two times in order to remove the white borders during startup.
+	for (int i = 0; i <= 2; i++) {
+		SendMessageW(Window::GetInstance()->GetWindowHandle(), WM_EXITSIZEMOVE, NULL, NULL);
+	}
+
 }
 
 bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
@@ -37,7 +43,7 @@ bool CefHandler::DoClose(CefRefPtr<CefBrowser> browser) {
 
 void CefHandler::OnBeforeClose(CefRefPtr<CefBrowser> browser) {
 	m_browser = NULL;
-	Window::GetInstance()->CloseWindow();
+	PostMessageW(Window::GetInstance()->GetWindowHandle(), WM_CLOSE, NULL, NULL);
 }
 
 void CefHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
