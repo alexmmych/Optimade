@@ -16,6 +16,7 @@ LONG Window::windowY = 50;
 
 Window* Window::ptrInstance = nullptr;
 
+int Window::paintRef = 0;
 
 Window::Window()
 	:
@@ -142,6 +143,8 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		break;
 	}
 	case WM_PAINT: {
+		std::cout << "Window is being painted" << std::endl;
+
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(hwind, &ps);
 		GetWindowRect(hwind, &rcClient);
@@ -151,6 +154,10 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		}
 
 		EndPaint(hwind, &ps);
+
+		if (paintRef < 4) {
+			paintRef++;
+		}
 
 		break;
 	}
@@ -260,8 +267,12 @@ LRESULT CALLBACK Window::WindowProcedure(HWND hwind, UINT msg, WPARAM wparam, LP
 		std::cout << "Window got focus" << std::endl;
 		break;
 	}
+	case WM_ENTERSIZEMOVE: {
+		std::cout << "Window entered resizing" << std::endl;
+		break;
+	}
 	case WM_EXITSIZEMOVE: {
-		std::cout << "Window moved" << std::endl;
+		std::cout << "Window resized" << std::endl;
 
 		//Resets width and height values
 		width = rcClient.right - rcClient.left;

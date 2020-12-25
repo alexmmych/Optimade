@@ -162,7 +162,7 @@ LRESULT CALLBACK SubclassWindowProcedure(HWND hWnd, UINT message, WPARAM wParam,
 		int y = currentMouse.y - lastY;
 
 		//Moves the window handle to the current position of the mouse.
-		if (lastY <= 50) {
+		if (lastY <= 50 && ((Window::GetInstance()->paintRef == 4))) {
 			if (CefHandler::GetInstance()->maximized == true) {
 
 				//Minimizes window

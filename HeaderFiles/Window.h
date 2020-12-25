@@ -55,6 +55,8 @@ public:
 	static LONG windowX;
 	static LONG windowY;
 
+	//Int used to check how many times did WM_PAINT processed, knowing that at three the app is clear to be used.
+	static int paintRef;
 
 	//Static function in order for the class to work as a singleton.
 	static Window* GetInstance() {
